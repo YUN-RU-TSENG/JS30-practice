@@ -85,23 +85,31 @@
 
       window.setInterval(timeCount, 1000);
 
+      // 為什麼要放在這一層
+
+      var hour_hand = document.querySelector(".hour-hand");
+      var min_hand = document.querySelector(".min-hand");
+      var sec_hand = document.querySelector(".second-hand");
+
       function timeCount() {
         var now = new Date();
 
-        var hour_hand = document.querySelector(".hour-hand");
-        var hour = (now.getHours() * 30 ) + 90;
-        hour_hand.style.transform = `rotate(${hour}deg)`;
+        var hour = now.getHours()
+        var hourCalculate = ( hour / 12  * 360 ) + 90;
+        hour_hand.style.transform = `rotate(${hourCalculate}deg)`;
 
-        var min_hand = document.querySelector(".min-hand");
-        var minute = (now.getMinutes() * 6) + 90;
-        min_hand.style.transform = `rotate(${minute}deg)`;
+        var minute = now.getMinutes()
+        var minuteCalculate = ( minute / 60  * 360 )  + 90;
+        min_hand.style.transform = `rotate(${minuteCalculate}deg)`;
 
-        var sec_hand = document.querySelector(".second-hand");
-        var second = (now.getSeconds() * 60) / 6 + 90;
-        sec_hand.style.transform = `rotate(${second}deg)`;
+        var second = now.getSeconds()
+        var secondCalculate = ( second * 60 / 6 )  + 90;
+        sec_hand.style.transform = `rotate(${secondCalculate}deg)`;
 
       }
 
+      setInterval(timeCount, 1000)
+      timeCount()
 
 
     </script>
