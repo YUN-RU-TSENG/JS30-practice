@@ -85,7 +85,7 @@
 
       window.setInterval(timeCount, 1000);
 
-      // 為什麼要放在這一層
+      // 變數，為什麼要放在這一層
 
       var hour_hand = document.querySelector(".hour-hand");
       var min_hand = document.querySelector(".min-hand");
@@ -98,21 +98,19 @@
         var hour = now.getHours()
         var minute = now.getMinutes()
         var second = now.getSeconds()
-
-        var hourCalculate = ( hour / 12 * 360 ) + ( minute / 60  * 12 ) + 90;
-        hour_hand.style.transform = `rotate(${hourCalculate}deg)`;
-
-        var minuteCalculate = ( minute / 60 * 360 ) + ( second / 60 * 12 ) + 90;
-        min_hand.style.transform = `rotate(${minuteCalculate}deg)`;
-
+        var hourCalculate = ( hour / 12 * 360 ) + ( minute / 60  * 30 ) + ( second / 60 * .1 ) + 90;
+        var minuteCalculate = ( minute / 60 * 360 ) + ( second / 60 * 6 ) + 90;
         var secondCalculate = ( second / 60 * 360 )  + 90;
+
+        hour_hand.style.transform = `rotate(${hourCalculate}deg)`;
+        min_hand.style.transform = `rotate(${minuteCalculate}deg)`;
         sec_hand.style.transform = `rotate(${secondCalculate}deg)`;
 
       }
 
       setInterval(timeCount, 1000)
-      timeCount()
 
+      timeCount()
 
     </script>
   </body>

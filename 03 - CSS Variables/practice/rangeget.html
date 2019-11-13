@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .w {
+        color: red;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+      }
+      .fixed {
+        position: fixed;
+        height: 10px;
+        width: 10px;
+        background-color: red;
+        top: 300px;
+        left: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fixed" data-time='100'></div>
+    <label for="color">color</label>
+    <input type="color" name="color" id="color" class="w" />
+    <label for="range">range</label>
+    <input type="range" name="range" id="" />
+    <script>
+      // 得到 range
+      //   var color = document.getElementsByName("color")[0];
+      //   var range = document.getElementsByName("range")[0];
+      //   console.log(color.className);
+      //   console.log(range.value);
+      // 得到 client page
+      var spacing = document.getElementsByClassName("fixed")[0];
+      spacing.addEventListener("mousedown", e => {
+        console.log("clientX");
+        console.log(e.clientX);
+        console.log("pageX");
+        console.log(e.pageX);
+        console.log("screenX");
+        console.log(e.screenX);
+        console.log("offsetX");
+        console.log(e.offsetX);
+        console.log('dataset');
+        console.log(spacing.dataset);
+        console.log('camelClass');
+        spacing.dataset.time = 200
+        console.log(spacing.dataset.time);
+      });
+    </script>
+  </body>
+</html>
