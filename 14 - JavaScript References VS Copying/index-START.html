@@ -8,18 +8,18 @@
 
   <script>
     // start with strings, numbers and booleans
-
     // Let's say we have an array
+    
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+    const playSliceCopy = players.slice()
+    const playConcatCopt = [].concat(players)
+    const playSpeardCopt = [...players]
+    const playArrayFrom = Array.from(players)
 
     // and we want to make a copy of it.
-
     // You might think we can just do something like this:
-
     // however what happens when we update that array?
-
     // now here is the problem!
-
     // oh no - we have edited the original array too!
 
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
@@ -42,7 +42,13 @@
       age: 80
     };
 
+    const personCopy = Object.assign({}, person)
+    const personCopy = Object.assign({}, person,{age: 12})
+    const personDeepClone = JSON.parse(JSON.stringify(person))
+
     // and think we make a copy:
+    // 比較深拷貝、淺拷貝
+    // 比較 slice()、[...]、concat()、Array.from()、assign()
 
     // how do we take a copy instead?
 
