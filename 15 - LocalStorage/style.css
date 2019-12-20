@@ -11,7 +11,8 @@ html {
 }
 
 *, *:before, *:after {
-  box-sizing: inherit; 
+  box-sizing: inherit;
+  user-select: none;
 }
 
 svg {
