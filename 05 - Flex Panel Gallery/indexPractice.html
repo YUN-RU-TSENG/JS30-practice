@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flex Practice</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Amatic+SC"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <main>
+      <section>
+        <div>
+          <h2>1title</h2>
+          <p>Lorem ipsum dolor sit amet consectetur.</p>
+        </div>
+      </section>
+      <section>
+        <div>
+          <h2>2title</h2>
+          <p>Lorem ipsum dolor sit amet consectetur.</p>
+        </div>
+      </section>
+      <section>
+        <div>
+          <h2>3title</h2>
+          <p>Lorem ipsum dolor sit amet consectetur.</p>
+        </div>
+      </section>
+      <section>
+        <div>
+          <h2>4title</h2>
+          <p>Lorem ipsum dolor sit amet consectetur.</p>
+        </div>
+      </section>
+    </main>
+    <script>
+
+        const touchSection = Array.from(document.querySelectorAll('section'))
+
+        touchSection.forEach( element => element.addEventListener('click', addClass))
+        touchSection.forEach( element => element.addEventListener('transitionstart', removeClass))
+
+        function addClass(e){
+          touchSection.filter( element => element != this ).forEach( element => element.classList.remove('show'))
+          this.classList.toggle('show')
+        }
+
+        function removeClass(e) {
+          if(e.propertyName.includes('flex')) e.currentTarget.classList.toggle('showParagraph')
+        }
+
+    </script>
+  </body>
+</html>
