@@ -1,22 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Type Ahead 👀</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Type Ahead 👀</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form class="search-form">
+      <input type="text" class="search" placeholder="City or State" />
+      <ul class="suggestions">
+        <li>Filter for a city</li>
+        <li>or a state</li>
+      </ul>
+    </form>
+    <script>
+      const endpoint =
+        "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
 
-  <form class="search-form">
-    <input type="text" class="search" placeholder="City or State">
-    <ul class="suggestions">
-      <li>Filter for a city</li>
-      <li>or a state</li>
-    </ul>
-  </form>
-<script>
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+      const cities = [];
 
-</script>
-</body>
+      fetch(endpoint)
+        .then(response => response.json())
+        .then(response => {
+          cities.push(...response);
+        });
+
+      function getInput() {
+        let li = document.querySelector(".search");
+        return li.value;
+      }
+
+      function filterJson(json, inputValue) {
+        return json.filter(value => {
+          let regexp = RegExp(inputValue, "gi");
+          return value.city.match(regexp) || value.state.match(regexp);
+        });
+      }
+
+      function createElement(arr) {
+        let ul = document.querySelector(".suggestions");
+        let element = arr.map(value => {
+          let regexp = RegExp(getInput(), "gi");
+          let selectCity = value.city.replace(regexp,`<span class ='hl'>${regexp}</span>`);
+          let selectStatus = value.state.replace(regexp,`<span class ='hl'>${regexp}</span>`);
+          return `<li><span>${selectCity}</span><span>${selectStatus}</span></li>`;
+        });
+        ul.innerHTML = element.join("");
+      }
+
+      let input = document.querySelector(".search");
+      input.addEventListener("input", e => {
+        if (!e.target.value) {
+          let ul = document.querySelector(".suggestions");
+          ul.innerHTML = "";
+          return;
+        }
+        createElement(filterJson(cities, getInput()));
+      });
+
+      // getWord(cities);
+      // // console.log(getInputValue())
+      // // console.log(filterMatchCountry(getInputValue(), cities));
+
+      // // let element;
+      // function getWord(response) {
+      //   let search = document.getElementsByClassName("search")[0];
+      //   search.addEventListener("input", () => {
+      //     // 這邊要改的是刪除該放在哪裡
+      //     let ul = document.querySelector("ul");
+      //     let liDel = document.querySelectorAll("li");
+
+      //     if (liDel) {
+      //       for (var i = liDel.length - 1; i >= 0; i--) {
+      //         ul.removeChild(liDel[i]);
+      //       }
+      //     }
+
+      //     // 這邊是其他東東
+      //     let search = document.getElementsByClassName("search")[0];
+      //     let element = response.filter(value => {
+      //       if (`${value["city"]}`.match(`${search.value}`)) return true;
+      //       return false;
+      //     });
+
+      //     element.forEach(value => {
+      //       let ul = document.querySelector("ul");
+      //       let liExist = document.createElement("li");
+      //       let li = document.createElement("li");
+      //       let liText = document.createTextNode(`${value.city}`);
+      //       li.appendChild(liText);
+      //       ul.appendChild(li);
+      //     });
+      //   });
+      //   // element.forEach((value) => )
+      // }
+
+      // function filterMatchCountry(input, json) {
+      //   return json.filter(value => {
+      //     var regex = new RegExp(input, "gi");
+      //     console.log(regex);
+      //     if (`${value["city"]}`.match(`${search.value}`)) return true;
+      //     return false;
+      //   });
+      // }
+
+      // function getInputValue() {
+      //   let input = document.getElementsByClassName("search")[0];
+      //   return input.value;
+      // }
+    </script>
+  </body>
 </html>
