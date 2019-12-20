@@ -42,6 +42,7 @@
   function shadow(e) {
     const { offsetWidth: width, offsetHeight: height } = hero;
     let { offsetX: x, offsetY: y } = e;
+    console.log()
 
     if (this !== e.target) {
       x = x + e.target.offsetLeft;
@@ -57,7 +58,6 @@
       ${yWalk}px ${xWalk * -1}px 0 rgba(0,255,0,0.7),
       ${yWalk * -1}px ${xWalk}px 0 rgba(0,0,255,0.7)
     `;
-
   }
 
   hero.addEventListener('mousemove', shadow);
