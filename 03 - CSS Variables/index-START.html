@@ -36,9 +36,11 @@
     <div class="img"></div>
 
     <style>
-      /*
-      misc styles, nothing to do with CSS variables
-    */
+      :root {
+        --spacing: 10px;
+        --blur: 10px;
+        --base: #ffc600;
+      }
       body {
         text-align: center;
         background: #193549;
@@ -60,11 +62,44 @@
         background-position: center;
         width: 840px;
         height: 540px;
-        background-color: yellow;
+        padding: var(--spacing);
+        filter: blur(var(--blur));
+        background-color: var(--base);
       }
     </style>
 
     <script>
+
+      const input = Array.from(document.querySelectorAll("input"));
+      input.forEach((e) => e.addEventListener('input', setClassProperty))
+
+      function setClassProperty(e) {
+        // console.log(this)
+        const unit = this.dataset.sizing || '';
+        document.documentElement.style.setProperty( `--${this.name}`, this.value + unit);
+      }
+
+      // const img = document.querySelector(".img");
+      // const spacing = document.querySelector("#spacing");
+      // const blur = document.querySelector("#blur");
+      // const base = document.querySelector("#base");
+
+      // spacing.addEventListener("input", setSpacingClass);
+      // blur.addEventListener("input", setBlurClass);
+      // base.addEventListener("input", setColorClass);
+
+      // function setSpacingClass(e) {
+      //   img.style.padding = `${e.target.value}px`;
+      // }
+
+      // function setBlurClass(e) {
+      //   img.style.filter = `blur(${e.target.value}px)`;
+      // }
+
+      // function setColorClass(e) {
+      //   img.style.backgroundColor = `${e.target.value}`;
+      // }
+
       // var img = document.getElementsByClassName("img")[0];
       // img.style.filter = `blur(${10}px)`
 
@@ -106,25 +141,27 @@
 
       // 修正-----------------------------
 
-      var img = document.getElementsByClassName("img")[0];
+      // var img = document.getElementsByClassName("img")[0];
 
-      var spacing = document.getElementById("spacing");
-      var blur = document.getElementById("blur");
-      var base = document.getElementById("base");
+      // var spacing = document.getElementById("spacing");
+      // var blur = document.getElementById("blur");
+      // var base = document.getElementById("base");
+      // var bases = document.body.getAttribute("style");
 
-      spacing.addEventListener("input", e => {
-        img.style.padding = `${e.target.value}px`;
-      });
+      // spacing.addEventListener("input", e => {
+      //   img.style.padding = `${e.target.value}px`;
+      // });
 
-      blur.addEventListener("input", e => {
-        console.log(e.target.dataset)
-        img.style.filter = `blur(${e.target.value}px)`;
-      });
+      // blur.addEventListener("input", e => {
+      //   console.log(e.target.dataset)
+      //   img.style.filter = `blur(${e.target.value}px)`;
+      // });
 
-      base.addEventListener("change", e => {
-        img.style.backgroundColor = `${e.target.value}`;
-      });
+      // base.addEventListener("change", e => {
+      //   img.style.backgroundColor = `${e.target.value}`;
+      // });
 
+      // console.dir(bases)
     </script>
   </body>
 </html>
