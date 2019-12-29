@@ -137,7 +137,7 @@
       </li>
       <li data-time="3:36">
         Video 44
-      </li>
+      </li>x
       <li data-time="7:10">
         Video 45
       </li>
@@ -183,31 +183,39 @@
     </ul>
     <script>
       (function() {
-
         const li = document.querySelectorAll("ul li");
         const ul = document.querySelector("ul");
         const body = document.querySelector("body");
 
         setH2Element(countTime(getDataTime(li)));
 
+        // function getDataTime(elements) {
+        //   return Array.from(elements)
+        //     .map(el => el.dataset.time.split(":"))
+        //     .reduce((obj, next) => {
+        //       if (!obj.hour && !obj.minute) obj.minute = 0, obj.hour = 0;
+        //       obj.hour += Number(next[0]);
+        //       obj.minute += Number(next[1]);
+        //       return obj
+        //     }, {});
+        // }
+
         function getDataTime(elements) {
           return Array.from(elements)
             .map(el => el.dataset.time.split(":"))
-            .reduce((obj, next) => {
-              if (!obj.hour && !obj.minute) obj.minute = 0, obj.hour = 0;
-              obj.hour += Number(next[0]);
-              obj.minute += Number(next[1]);
-              return obj
-            }, {});
+            .map(obj => {
+              [hour, minute] = obj.map(value => parseFloat(value));
+              return hour * 60 + minute;
+            }).reduce((pref, next) => pref + next)
         }
 
-        function countTime(obj){
-          const newTime = JSON.parse(JSON.stringify(obj))
-          while(newTime.minute > 60){
-            newTime.minute -= 60;
-            newTime.hour += 1;
+        function countTime(number) {
+          const result = {minute: number, hour: 0}
+          while (result.minute >= 60) {
+            result.minute -= 60;
+            result.hour += 1;
           }
-          return newTime
+          return result;
         }
 
         function setH2Element(obj) {
@@ -218,7 +226,6 @@
           h2.appendChild(h2Text);
           body.insertBefore(h2, ul);
         }
-
       })();
     </script>
   </body>
