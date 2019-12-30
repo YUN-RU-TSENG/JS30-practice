@@ -18,7 +18,7 @@
     html {
       font-size: 100px;
     }
-    
+
     body {
       margin: 0;
       font-family: sans-serif;
@@ -62,6 +62,7 @@
     const arrow = document.querySelector('.arrow');
     const speed = document.querySelector('.speed-value');
 
+    console.log(navigator.geolocation.watchPosition)
     navigator.geolocation.watchPosition((data) => {
       console.log(data);
       speed.textContent = data.coords.speed;
