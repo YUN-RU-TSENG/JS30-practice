@@ -8,19 +8,22 @@
 <body>
 
   <header>
-    <h1>A story about getting lost.</h1>
+    <div class="banner">
+      <h1>A story about getting lost.</h1>
+    </div>
+    <nav id="main">
+      <ul>
+        <li class="logo"><a href="#">LOST.</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Images</a></li>
+        <li><a href="#">Locations</a></li>
+        <li><a href="#">Maps</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav id="main">
-    <ul>
-      <li class="logo"><a href="#">LOST.</a></li>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Images</a></li>
-      <li><a href="#">Locations</a></li>
-      <li><a href="#">Maps</a></li>
-    </ul>
-  </nav>
+
 
   <div class="site-wrap">
 
@@ -54,6 +57,25 @@
   </div>
 
 <script>
+
+;(function(){
+  const nav = document.querySelector('#main')
+  const header = document.querySelector('header')
+  const navOffsetTop = nav.offsetTop
+
+  window.addEventListener('scroll', stickyNav)
+
+  function stickyNav(e){
+    if(window.scrollY >= navOffsetTop){
+      nav.classList.add('fixed')
+      header.style.paddingBottom = '77px'
+      return;
+    }
+    nav.classList.remove('fixed')
+    header.style.paddingBottom = ''
+  }
+
+})()
 
 </script>
 

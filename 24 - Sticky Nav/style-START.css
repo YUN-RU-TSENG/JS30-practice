@@ -25,7 +25,8 @@ body {
   transition: transform 0.5s;
 }
 
-header {
+
+.banner {
   text-align: center;
   height: 50vh;
   background: url(http://wes.io/iEgP/wow-so-deep.jpg) bottom center no-repeat;
@@ -66,7 +67,7 @@ nav li {
 }
 
 li.logo {
-  max-width: 0;
+  flex: 0;
   overflow: hidden;
   background: white;
   transition: all .5s;
@@ -85,4 +86,13 @@ nav a {
   color: white;
   transition: all 0.2s;
   text-transform: uppercase;
+}
+
+nav.fixed {
+  position: fixed;
+  top: 0;
+}
+
+nav.fixed .logo {
+  flex: 1;
 }
