@@ -3,45 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <title>Understanding JavaScript's Capture</title>
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    div {
+      width: 100%;
+      padding: 100px;
+    }
+
+    .one {
+      background: thistle;
+    }
+
+    .two {
+      background: mistyrose;
+    }
+
+    .three {
+      background: coral;
+    }
+  </style>
 </head>
 <body class="bod">
-
   <div class="one">
     <div class="two">
       <div class="three">
       </div>
     </div>
   </div>
-
-<style>
-  html {
-    box-sizing: border-box;
-  }
-  
-  *, *:before, *:after { 
-    box-sizing: inherit; 
-  }
-
-  div {
-    width: 100%;
-    padding: 100px;
-  }
-
-  .one {
-    background: thistle;
-  }
-
-  .two {
-    background: mistyrose;
-  }
-
-  .three {
-    background: coral;
-  }
-</style>
-
-<button></button>
+<button>btn</button>
 <script>
+  const get = (element) => document.querySelector(element)
+  const getAll = (element) => document.querySelectorAll(element)
+  const div = getAll('div')
+  const button = get('button')
+
+  div.forEach(element => element.addEventListener('click', printEventPhase,{
+    capture: true,
+    once: true,
+    passive: false
+  }))
+
+  button.addEventListener('click', function(){
+    console.log(e.target)
+  })
+
+
+  function printEventPhase(e){
+    console.log('e.currentTarget.className',e.currentTarget.className)
+    console.log('e.target.className',e.target.className)
+    console.log('e.eventPhase',e.eventPhase)
+    console.log('----------')
+    e.stopPropagation();
+  }
+
+
 
 </script>
 </body>
