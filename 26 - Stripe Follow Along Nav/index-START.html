@@ -79,11 +79,11 @@
     box-sizing: border-box;
     font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
   }
-  
+
   *, *:before, *:after {
     box-sizing: inherit;
   }
-  
+
   body {
     margin: 0;
     min-height: 100vh;
@@ -149,7 +149,7 @@
   .trigger-enter-active .dropdown {
     opacity: 1;
   }
-  
+
   .dropdownBackground {
     width: 100px;
     height: 100px;
@@ -220,6 +220,42 @@
 </style>
 
 <script>
+
+(function(){
+
+  const navButton = document.querySelectorAll('ul.cool a')
+  const dropdownBackground = document.querySelector('.dropdownBackground')
+
+  navButton.forEach(element => element.addEventListener('mousemove', function(e){
+    dropdownBackground.classList.add('open')
+    this.parentNode.classList.add('trigger-enter')
+    setTimeout(() => this.parentNode.classList.contains('trigger-enter') && this.parentNode.classList.add('trigger-enter-active'), 300)
+
+    let data = {
+      width: this.nextElementSibling.offsetWidth,
+      height: this.nextElementSibling.offsetHeight,
+      top: this.getBoundingClientRect().top,
+      left: this.getBoundingClientRect().left - (this.nextElementSibling.offsetWidth / 2) + (this.offsetWidth / 2)
+    }
+
+    dropdownBackground.style.width = `${data.width}px`;
+    dropdownBackground.style.height = `${data.height}px`
+    dropdownBackground.style.transform = `translate(${data.left}px, ${data.top}px)`
+  }))
+
+  navButton.forEach(element => element.addEventListener('mouseleave', function(e){
+    dropdownBackground.classList.remove('open')
+    this.parentNode.classList.remove('trigger-enter')
+    this.parentNode.classList.remove('trigger-enter-active')
+    dropdownBackground.style.width = '';
+    dropdownBackground.style.height = '';
+  }))
+
+  navButton.forEach(element => element.addEventListener('transitionend', function(e){
+  }))
+
+})();
+
 </script>
 
 </body>
