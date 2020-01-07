@@ -223,36 +223,45 @@
 
 (function(){
 
-  const navButton = document.querySelectorAll('ul.cool a')
+  const navLink = document.querySelectorAll('.cool a')
   const dropdownBackground = document.querySelector('.dropdownBackground')
 
-  navButton.forEach(element => element.addEventListener('mousemove', function(e){
-    dropdownBackground.classList.add('open')
-    this.parentNode.classList.add('trigger-enter')
-    setTimeout(() => this.parentNode.classList.contains('trigger-enter') && this.parentNode.classList.add('trigger-enter-active'), 300)
+  navLink.forEach(element => element.addEventListener('mouseover', setdropDownContent))
+  navLink.forEach(element => element.addEventListener('mouseover', setdropDownBackground))
+  navLink.forEach(element => element.addEventListener('mouseout', removedropDownBackground))
+  navLink.forEach(element => element.addEventListener('mouseout', removedropDownContent))
 
-    let data = {
-      width: this.nextElementSibling.offsetWidth,
-      height: this.nextElementSibling.offsetHeight,
-      top: this.getBoundingClientRect().top,
-      left: this.getBoundingClientRect().left - (this.nextElementSibling.offsetWidth / 2) + (this.offsetWidth / 2)
+  function setdropDownBackground(e){
+    const dropdownSibling = this.nextElementSibling
+    const dropdownSize = this.getBoundingClientRect()
+    dropdownBackground.classList.add('open')
+
+    const coords = {
+      width: dropdownSibling.offsetWidth,
+      height: dropdownSibling.offsetHeight,
+      top: dropdownSize.top,
+      left: dropdownSize.left - (dropdownSibling.offsetWidth / 2) + (this.offsetWidth / 2)
     }
 
-    dropdownBackground.style.width = `${data.width}px`;
-    dropdownBackground.style.height = `${data.height}px`
-    dropdownBackground.style.transform = `translate(${data.left}px, ${data.top}px)`
-  }))
+    dropdownBackground.style.setProperty('width', `${coords.width}px`)
+    dropdownBackground.style.setProperty('height', `${coords.height}px`)
+    dropdownBackground.style.setProperty('transform', `translate(${coords.left}px, ${coords.top}px)`)
+  }
 
-  navButton.forEach(element => element.addEventListener('mouseleave', function(e){
+  function setdropDownContent(e){
+    this.parentNode.classList.add('trigger-enter')
+    setTimeout(() => this.parentNode.classList.contains('trigger-enter') && this.parentNode.classList.add('trigger-enter-active'), 300)
+  }
+
+  function removedropDownBackground(e){
     dropdownBackground.classList.remove('open')
-    this.parentNode.classList.remove('trigger-enter')
-    this.parentNode.classList.remove('trigger-enter-active')
-    dropdownBackground.style.width = '';
-    dropdownBackground.style.height = '';
-  }))
+    dropdownBackground.style.removeProperty('width')
+    dropdownBackground.style.removeProperty('height')
+  }
 
-  navButton.forEach(element => element.addEventListener('transitionend', function(e){
-  }))
+  function removedropDownContent(e){
+    this.parentNode.classList.remove('trigger-enter','trigger-enter-active')
+  }
 
 })();
 
