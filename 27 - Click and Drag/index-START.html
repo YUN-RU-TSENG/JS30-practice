@@ -35,26 +35,35 @@
     </div>
 
     <script>
-      const items = document.querySelector(".items");
-      const item = document.querySelectorAll(".item");
-      const p = document.querySelector("p");
-      let isActive = false;
-      let number = 0;
-      let clientX = 0;
+      (function() {
+        const items = document.querySelector(".items");
 
-      item.forEach(el => el.addEventListener("mousedown", function(e) {
-        clientX = e.clientX;
-      }))
+        let isMouseDown = false;
+        let startPageX;
+        let startScrollLeft;
 
-      item.forEach(el => el.addEventListener("mouseup", function(e) {
-          number += (clientX - e.clientX);
-          if(number > (items.scrollWidth - items.offsetWidth)) number = items.scrollWidth - items.offsetWidth
-          if(number < 0) number = 0
-          if(number < (items.scrollWidth - items.offsetWidth) && number > 0){
-          items.scrollLeft = number
-        }
-      }))
+        items.addEventListener("mousedown", function(e) {
+          isMouseDown = true;
+          items.classList.add("active");
+          startPageX = e.pageX;
+          startScrollLeft = this.scrollLeft;
+        });
 
+        items.addEventListener("mouseup", function(e) {
+          isMouseDown = false;
+          this.classList.remove("active");
+        });
+
+        items.addEventListener("mouseleave", function(e) {
+          isMouseDown = false;
+          this.classList.remove("active");
+        });
+
+        items.addEventListener("mousemove", function(e) {
+          if (!isMouseDown) return;
+          items.scrollLeft = startScrollLeft - (e.pageX - startPageX);
+        });
+      })();
     </script>
   </body>
 </html>

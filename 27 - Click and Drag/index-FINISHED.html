@@ -42,8 +42,9 @@
 
   slider.addEventListener('mousedown', (e) => {
     isDown = true;
+    console.log(slider.offsetLeft)
     slider.classList.add('active');
-    startX = e.pageX - slider.offsetLeft;
+    startX = e.pageX;
     scrollLeft = slider.scrollLeft;
   });
 
@@ -60,7 +61,7 @@
   slider.addEventListener('mousemove', (e) => {
     if (!isDown) return;  // stop the fn from running
     e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
+    const x = e.pageX;
     const walk = (x - startX) * 3;
     slider.scrollLeft = scrollLeft - walk;
   });
