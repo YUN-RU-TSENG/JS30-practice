@@ -42,27 +42,28 @@
         let startPageX;
         let startScrollLeft;
 
-        items.addEventListener("mousedown", function(e) {
+        items.addEventListener("mousedown", setStratCoordinate);
+        items.addEventListener("mouseup", stopScroll);
+        items.addEventListener("mouseleave", stopScroll);
+        items.addEventListener("mousemove", scrollItemsCoordinate);
+
+        function setStratCoordinate(e) {
           isMouseDown = true;
           items.classList.add("active");
           startPageX = e.pageX;
           startScrollLeft = this.scrollLeft;
-        });
+        }
 
-        items.addEventListener("mouseup", function(e) {
+        function stopScroll(){
           isMouseDown = false;
           this.classList.remove("active");
-        });
+        }
 
-        items.addEventListener("mouseleave", function(e) {
-          isMouseDown = false;
-          this.classList.remove("active");
-        });
-
-        items.addEventListener("mousemove", function(e) {
+        function scrollItemsCoordinate(e) {
           if (!isMouseDown) return;
-          items.scrollLeft = startScrollLeft - (e.pageX - startPageX);
-        });
+          items.scrollLeft = startScrollLeft + (startPageX - e.pageX);
+        }
+
       })();
     </script>
   </body>
