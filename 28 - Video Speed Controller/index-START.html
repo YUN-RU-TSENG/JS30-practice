@@ -1,42 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Video Speed Scrubber</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <div class="wrapper">
-    <video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" loop controls></video>
-    <div class="speed">
-      <div class="speed-bar">1×</div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Video Speed Scrubber</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <video
+        class="flex"
+        width="765"
+        height="430"
+        src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"
+        loop
+        controls
+      ></video>
+      <div class="speed">
+        <div class="speed-bar">1×</div>
+      </div>
     </div>
-  </div>
 
-<script>
+    <script>
+      (function() {
+        const progressBar = document.querySelector(".speed");
 
-  const progressBar = document.querySelector('.speed')
+        progressBar.addEventListener("mousemove", setVideoProgressSpeed);
 
-  progressBar.addEventListener('mousemove', setVideoProgressSpeed)
+        function setVideoProgressSpeed(e) {
+          const video = document.querySelector("video");
+          const progressInner = document.querySelector(".speed-bar");
+          let progressData = {
+            percent: null,
+            fourTimes: null
+          };
 
-  function setVideoProgressSpeed(e){
-    const video = document.querySelector('video')
-    const progressInner = document.querySelector('.speed-bar')
-    const progressCoords = this.getBoundingClientRect()
+          progressData.percent = (e.offsetY / this.clientHeight) * 100 + "%"
+          progressData.fourTimes = ((e.offsetY / this.clientHeight) * 4).toFixed(2)
 
-    const progressData = {
-      percent: (e.offsetY / progressCoords.height * 100).toFixed(2) + '%',
-      fourTimes: (e.offsetY / progressCoords.height * 4).toFixed(2)
-    }
+          if (progressData.fourTimes < 0.25) return;
+          progressInner.style.height = progressData.percent;
+          progressInner.textContent = `${progressData.fourTimes}X`;
+          video.playbackRate = progressData.fourTimes;
+        }
 
-    if(progressData.fourTimes < 0.25) return;
-
-    progressInner.style.height = progressData.percent;
-    progressInner.textContent = `${progressData.fourTimes}X`;
-    video.playbackRate = progressData.fourTimes;
-  }
-
-</script>
-</body>
+      })();
+    </script>
+  </body>
 </html>
