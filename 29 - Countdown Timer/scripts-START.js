@@ -6,30 +6,37 @@ let setTimeID = null;
 // 透過 enter 事件，取得 input 數值。
 
 buttons.forEach(element => element.addEventListener("click", setTimeCounter));
-input.addEventListener("change", e => {
-  e.preventDefault();
-});
-
+input.addEventListener("change", e => e.preventDefault());
 input.addEventListener("keydown", setInputTimeCounter);
 
 function setTimeCounter(e) {
+
   if (setTimeID) clearInterval(setTimeID);
-  let totalSecond = Number(this.dataset.time);
+
+  let now = Date.now();
+  let finialTime = Number(this.dataset.time) + now;
+  let totalSecond = finialTime - now;
+
   setTimeID = setInterval(() => {
-    let time = {
-      clockSecond: null,
-      clockMinute: null
-    };
-    time.clockSecond = totalSecond % 60;
-    time.clockMinute = (totalSecond - time.clockSecond) / 60;
-    let sureSecondTime = time.clockSecond.toString().replace(/\b(?=\d$)/, 0);
-    title.textContent = `${time.clockMinute}:${sureSecondTime}`;
-    if(totalSecond > 0)  {
-      totalSecond -= 1
-    } else{
-      clearInterval(setTimeID);
-    }
+    printTimeCounter(totalSecond);
+
+    if(totalSecond <= 0) clearInterval(setTimeID)
+    totalSecond -= 1;
   }, 1000);
+}
+
+function printTimeCounter(totalSecond){
+
+  let time = {
+    clockSecond: null,
+    clockMinute: null
+  };
+
+  time.clockSecond = totalSecond % 60;
+  time.clockMinute = (totalSecond - time.clockSecond) / 60;
+  let sureSecondTime = time.clockSecond.toString().replace(/\b(?=\d$)/, 0);
+  document.title = `${time.clockMinute}:${sureSecondTime}`;
+  title.textContent = `${time.clockMinute}:${sureSecondTime}`;
 }
 
 function setInputTimeCounter(e) {
@@ -37,21 +44,11 @@ function setInputTimeCounter(e) {
     e.preventDefault();
     if (setTimeID) clearInterval(setTimeID);
     let totalSecond = Number(this.value) * 60;
-    console.log(totalSecond);
     setTimeID = setInterval(() => {
-      let time = {
-        clockSecond: null,
-        clockMinute: null
-      };
-      time.clockSecond = totalSecond % 60;
-      time.clockMinute = (totalSecond - time.clockSecond) / 60;
-      let sureSecondTime = time.clockSecond.toString().replace(/\b(?=\d$)/, 0);
-      title.textContent = `${time.clockMinute}:${sureSecondTime}`;
-      if(totalSecond > 0)  {
-        totalSecond -= 1
-      } else{
-        clearInterval(setTimeID);
-      }
+      printTimeCounter(totalSecond);
+
+      if(totalSecond < 0) clearInterval(setTimeID)
+      totalSecond -= 1;
     }, 1000);
     this.value = ''
   }
