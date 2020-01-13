@@ -226,10 +226,12 @@
   const navLink = document.querySelectorAll('.cool a')
   const dropdownBackground = document.querySelector('.dropdownBackground')
 
+  // navLink.forEach(element => element.addEventListener('mouseover', setdropDown))
   navLink.forEach(element => element.addEventListener('mouseover', setdropDownContent))
   navLink.forEach(element => element.addEventListener('mouseover', setdropDownBackground))
   navLink.forEach(element => element.addEventListener('mouseout', removedropDownBackground))
   navLink.forEach(element => element.addEventListener('mouseout', removedropDownContent))
+
 
   function setdropDownBackground(e){
     const dropdownSibling = this.nextElementSibling
