@@ -40,9 +40,9 @@ function printCountTime(total){
 function printLastTime(time){
   const endTime = new Date(time * 1000)
   const endHour = endTime.getHours()
-  const endMin = endTime.getMinutes().toString().replace(/\b(?=\d$)/, 0)
+  const endMin = endTime.getMinutes()
   display_p.innerHTML = `
-  即將結束於 ${endHour} 點 ${endMin} 分。
+  即將結束於 ${endHour} 點 ${endMin.toString().replace(/\b(?=\d$)/, 0)} 分。
   `
 }
 
