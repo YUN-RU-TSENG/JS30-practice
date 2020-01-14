@@ -1,40 +1,38 @@
 const timer_button = document.querySelectorAll('.timer__controls button')
-let display_h1 = document.querySelector('.display h1')
-let display_p = document.querySelector('.display p')
-let form = document.querySelector('#custom')
+const display_h1 = document.querySelector('.display h1')
+const display_p = document.querySelector('.display p')
+const form = document.querySelector('#custom')
 let countTime;
 
 timer_button.forEach(element => element.addEventListener('click', startTimeCount))
 form.addEventListener('submit', function(e){
   if(!this.firstElementChild.value) return;
-  e.preventDefault()
-  timer(parseInt(this.firstElementChild.value)*60)
+  e.preventDefault();
+  const inputValue = this.firstElementChild.value;
+  timer(inputValue * 60);
+  this.reset();
 })
 
 function startTimeCount(e){
   timer(this.dataset.time)
 }
 
-
 function timer(value){
   clearInterval(countTime)
   const now = Date.now() / 1000;
   const then = now + parseInt(value);
   const total = then - now;
-
   printCountTime(total);
   printLastTime(then);
-
   countTime = setInterval(() => {
-    let totalLeft = then - Math.floor(Date.now() / 1000);
+    const totalLeft = then - Math.floor(Date.now() / 1000);
     printCountTime(totalLeft);
     if(totalLeft < 0) clearInterval(countTime);
   }, 1000)
-
 }
 
 function printCountTime(total){
-  const startSec = Math.floor(total % 60);
+  const startSec = Math.floor(total % 60); // 不能用 round 的原因是因為裡面的時間假如進位，則會產生意外的變動。
   const startMin = Math.floor((total - startSec) / 60);
   display_h1.innerHTML = `${startMin}:${startSec.toString().replace(/\b(?=\d$)/, '0')}`;
 }
@@ -43,9 +41,8 @@ function printLastTime(time){
   const endTime = new Date(time * 1000)
   const endHour = endTime.getHours()
   const endMin = endTime.getMinutes().toString().replace(/\b(?=\d$)/, 0)
-  const endSec = endTime.getSeconds().toString().replace(/\b(?=\d$)/, 0)
   display_p.innerHTML = `
-  即將結束於 ${endHour} 點 ${endMin} 分 ${endSec} 秒。
+  即將結束於 ${endHour} 點 ${endMin} 分。
   `
 }
 
@@ -74,7 +71,6 @@ function printLastTime(time){
 //   }, 1000);
 // }
 
-
 // function printTimeCounter(totalSecond){
 //   let time = {
 //     clockSecond: null,
@@ -87,7 +83,6 @@ function printLastTime(time){
 //   document.title = `${time.clockMinute}:${sureSecondTime}`;
 //   title.textContent = `${time.clockMinute}:${sureSecondTime}`;
 // }
-
 
 // function setInputTimeCounter(e) {
 //   if (e.key === "Enter") {
