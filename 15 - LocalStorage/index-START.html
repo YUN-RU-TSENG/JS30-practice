@@ -29,6 +29,7 @@
 
 const add_items = document.querySelector('.add-items')
 const plates = document.querySelector('.plates')
+const li = document.querySelectorAll('li')
 const items = JSON.parse(localStorage.getItem('item')) || []
 
 add_items.addEventListener('submit', storeItem)
@@ -67,6 +68,7 @@ function checkItem(e) {
   items[checkIndex].isActive = !items[checkIndex].isActive
   localStorage.setItem('item', JSON.stringify(items))
   setList(items, plates)
+  console.log(li)
 }
 
 </script>
