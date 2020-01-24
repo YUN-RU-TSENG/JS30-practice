@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Speech Synthesis</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <title>Speech Synthesis</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="voiceinator">
-
       <h1>The Voiceinator 5000</h1>
 
       <select name="voice" id="voices">
@@ -17,59 +19,67 @@
       </select>
 
       <label for="rate">Rate:</label>
-      <input name="rate" type="range" min="0" max="3" value="1" step="0.1">
+      <input name="rate" type="range" min="0" max="3" value="1" step="0.1" />
 
       <label for="pitch">Pitch:</label>
 
-      <input name="pitch" type="range" min="0" max="2" step="0.1">
-      <textarea name="text" placeholder="請輸入想透過語音服務唸出的文字內容"></textarea>
+      <input name="pitch" type="range" min="0" max="2" step="0.1" />
+      <textarea
+        name="text"
+        placeholder="請輸入想透過語音服務唸出的文字內容"
+      ></textarea>
       <button id="stop">Stop!</button>
       <button id="speak">Speak</button>
-
     </div>
 
-<script>
+    <script>
 
-  const msg = new SpeechSynthesisUtterance();
-  let voices = [];
-  const get = (el) => document.querySelector(el)
-  const getAll = (el) => document.querySelectorAll(el)
-  const voicesDropdown = get('[name="voice"]');
-  const options = getAll('[type="range"], [name="text"]');
-  const speakButton = get('#speak');
-  const stopButton = get('#stop');
+      ;(function() {
+        const msg = new SpeechSynthesisUtterance();
+        let voices = [];
+        const get = el => document.querySelector(el);
+        const getAll = el => document.querySelectorAll(el);
+        const voicesDropdown = get('[name="voice"]');
+        const options = getAll('[type="range"], [name="text"]');
+        const speakButton = get("#speak");
+        const stopButton = get("#stop");
 
-  function addSpeakerOption(){
-    voices = this.getVoices()
-    voicesDropdown.innerHTML = voices
-      .filter(value => value.lang.includes('zh-'))
-      .map(value => `<option value="${value.name}">${value.name}+(${value.lang})</option>`)
-      .join('');
-  }
+        function addSpeakerOption() {
+          voices = this.getVoices();
+          voicesDropdown.innerHTML = voices
+            .filter(value => value.lang.includes("zh-"))
+            .map(
+              value =>
+                `<option value="${value.name}">${value.name}+(${value.lang})</option>`
+            )
+            .join("");
+        }
 
-  function speakText(status = true){
-    window.speechSynthesis.cancel() // 每次都需要重零的時後開始播放，不然就是繼續播放。
-    if(!msg.text) msg.text = '請輸入想透過語音服務唸出的文字內容' // 當我的事件沒有預設值的時候，便會有這個數值
-    if(status) window.speechSynthesis.speak(msg)
-  }
+        function speakText(status = true) {
+          window.speechSynthesis.cancel(); // 每次都需要重零的時後開始播放，不然就是繼續播放。
+          if (!msg.text) msg.text = "請輸入想透過語音服務唸出的文字內容"; // 當我的事件沒有預設值的時候，便會有這個數值
+          if (status) window.speechSynthesis.speak(msg);
+        }
 
-  function setVoice(e){
-    msg.voice = voices.find(() => e.name === this.value);
-    speakText()
-  }
+        function setVoice(e) {
+          msg.voice = voices.find(() => e.name === this.value);
+          speakText();
+        }
 
-  function setSpeechSynthesisUtterance(e){
-    msg[this.name] = this.value
-    speakText()
-  }
+        function setSpeechSynthesisUtterance(e) {
+          msg[this.name] = this.value;
+          speakText();
+        }
 
-  speechSynthesis.addEventListener('voiceschanged', addSpeakerOption)
-  voicesDropdown.addEventListener('change', setVoice)
-  options.forEach(element => element.addEventListener('change', setSpeechSynthesisUtterance))
-  speakButton.addEventListener('click', speakText)
-  stopButton.addEventListener('click', () => speakText(false))
+        speechSynthesis.addEventListener("voiceschanged", addSpeakerOption);
+        voicesDropdown.addEventListener("change", setVoice);
+        options.forEach(element =>
+          element.addEventListener("change", setSpeechSynthesisUtterance)
+        );
+        speakButton.addEventListener("click", speakText);
+        stopButton.addEventListener("click", () => speakText(false));
+      })();
 
-</script>
-
-</body>
+    </script>
+  </body>
 </html>
