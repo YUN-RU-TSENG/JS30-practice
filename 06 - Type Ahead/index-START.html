@@ -17,97 +17,57 @@
       const endpoint =
         "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
 
+      const dataUrl =
+        "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
+
       const cities = [];
-
-      fetch(endpoint)
+      fetch(dataUrl)
         .then(response => response.json())
-        .then(response => {
-          cities.push(...response);
-        });
+        .then(data => cities.push(...data))
+        .catch(err => console.log(err));
 
-      function getInput() {
-        let li = document.querySelector(".search");
-        return li.value;
+      const suggestions = document.querySelector(".suggestions");
+      const input = document.querySelector("input.search");
+      input.addEventListener("input", displayText);
+
+      function filterText(text, array) {
+        let regexp = new RegExp(text, "gi");
+        return array.filter(value => regexp.test(value.city));
       }
-
-      function filterJson(json, inputValue) {
-        return json.filter(value => {
-          let regexp = RegExp(inputValue, "gi");
-          return value.city.match(regexp) || value.state.match(regexp);
-        });
-      }
-
-      function createElement(arr) {
-        let ul = document.querySelector(".suggestions");
-        let element = arr.map(value => {
-          let regexp = RegExp(getInput(), "gi");
-          let selectCity = value.city.replace(regexp,`<span class ='hl'>${regexp}</span>`);
-          let selectStatus = value.state.replace(regexp,`<span class ='hl'>${regexp}</span>`);
-          return `<li><span>${selectCity}</span><span>${selectStatus}</span></li>`;
-        });
-        ul.innerHTML = element.join("");
-      }
-
-      let input = document.querySelector(".search");
-      input.addEventListener("input", e => {
-        if (!e.target.value) {
-          let ul = document.querySelector(".suggestions");
-          ul.innerHTML = "";
+      function displayText(e) {
+        if (cities === []) {
+          alert(`請稍請資料搜尋中。`);
           return;
         }
-        createElement(filterJson(cities, getInput()));
-      });
-
-      // getWord(cities);
-      // // console.log(getInputValue())
-      // // console.log(filterMatchCountry(getInputValue(), cities));
-
-      // // let element;
-      // function getWord(response) {
-      //   let search = document.getElementsByClassName("search")[0];
-      //   search.addEventListener("input", () => {
-      //     // 這邊要改的是刪除該放在哪裡
-      //     let ul = document.querySelector("ul");
-      //     let liDel = document.querySelectorAll("li");
-
-      //     if (liDel) {
-      //       for (var i = liDel.length - 1; i >= 0; i--) {
-      //         ul.removeChild(liDel[i]);
-      //       }
-      //     }
-
-      //     // 這邊是其他東東
-      //     let search = document.getElementsByClassName("search")[0];
-      //     let element = response.filter(value => {
-      //       if (`${value["city"]}`.match(`${search.value}`)) return true;
-      //       return false;
-      //     });
-
-      //     element.forEach(value => {
-      //       let ul = document.querySelector("ul");
-      //       let liExist = document.createElement("li");
-      //       let li = document.createElement("li");
-      //       let liText = document.createTextNode(`${value.city}`);
-      //       li.appendChild(liText);
-      //       ul.appendChild(li);
-      //     });
-      //   });
-      //   // element.forEach((value) => )
-      // }
-
-      // function filterMatchCountry(input, json) {
-      //   return json.filter(value => {
-      //     var regex = new RegExp(input, "gi");
-      //     console.log(regex);
-      //     if (`${value["city"]}`.match(`${search.value}`)) return true;
-      //     return false;
-      //   });
-      // }
-
-      // function getInputValue() {
-      //   let input = document.getElementsByClassName("search")[0];
-      //   return input.value;
-      // }
+        let text = filterText(this.value, cities);
+        let data = text
+          .map(value => {
+            const regexp = new RegExp(this.value);
+            const displayCity = value.city.replace(
+              regexp,
+              `<span class="hl">${this.value}</span>`
+            );
+            const displayState = value.state.replace(
+              regexp,
+              `<span class="hl">${this.value}</span>`
+            );
+            const displayPopulation = Number(value.population).toLocaleString(
+              "es-ES",
+              {
+                useGrouping: true
+              }
+            );
+            console.log(displayPopulation);
+            return `
+                <li>
+              <span class="name">${displayCity}, ${displayState}</span>
+        <span class="location">${displayPopulation}</span>
+    </li>
+`;
+          })
+          .join("");
+        suggestions.innerHTML = data;
+      }
     </script>
   </body>
 </html>
