@@ -14,17 +14,18 @@
       </ul>
     </form>
     <script>
-      const endpoint =
-        "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
-
       const dataUrl =
         "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
 
       const cities = [];
+
       fetch(dataUrl)
         .then(response => response.json())
         .then(data => cities.push(...data))
-        .catch(err => console.log(err));
+        .catch(err => {
+          alert("資料請求錯誤，請確認網路是否連線。");
+          console.log(err);
+        });
 
       const suggestions = document.querySelector(".suggestions");
       const input = document.querySelector("input.search");
@@ -34,15 +35,17 @@
         let regexp = new RegExp(text, "gi");
         return array.filter(value => regexp.test(value.city));
       }
+
       function displayText(e) {
         if (cities === []) {
-          alert(`請稍請資料搜尋中。`);
+          this.value = "";
+          alert(`資料仔入中，請稍候。`);
           return;
         }
         let text = filterText(this.value, cities);
         let data = text
           .map(value => {
-            const regexp = new RegExp(this.value);
+            const regexp = new RegExp(this.value, "gi");
             const displayCity = value.city.replace(
               regexp,
               `<span class="hl">${this.value}</span>`
@@ -51,21 +54,19 @@
               regexp,
               `<span class="hl">${this.value}</span>`
             );
-            const displayPopulation = Number(value.population).toLocaleString(
-              "es-ES",
-              {
-                useGrouping: true
-              }
-            );
-            console.log(displayPopulation);
+            const displayPopulation = value.population.toLocaleString("es-ES", {
+              style: "currency",
+              currency: "EUR"
+            });
             return `
-                <li>
-              <span class="name">${displayCity}, ${displayState}</span>
+    <li>
+        <span class="name">${displayCity}, ${displayState}</span>
         <span class="location">${displayPopulation}</span>
     </li>
 `;
           })
           .join("");
+
         suggestions.innerHTML = data;
       }
     </script>
