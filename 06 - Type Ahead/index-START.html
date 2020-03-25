@@ -17,19 +17,24 @@
       const dataUrl =
         "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
 
+      catchData(dataUrl);
+      addListener("input.search", "input", "click");
+
       const cities = [];
+      function catchData(dataUrl) {
+        fetch(dataUrl)
+          .then(response => response.json())
+          .then(data => cities.push(...data))
+          .catch(err => {
+            alert("資料請求錯誤，請確認網路是否連線。");
+            console.log(err);
+          });
+      }
 
-      fetch(dataUrl)
-        .then(response => response.json())
-        .then(data => cities.push(...data))
-        .catch(err => {
-          alert("資料請求錯誤，請確認網路是否連線。");
-          console.log(err);
-        });
-
-      const suggestions = document.querySelector(".suggestions");
-      const input = document.querySelector("input.search");
-      input.addEventListener("input", displayText);
+      function addListener(className, event, action) {
+        const element = document.querySelector(className);
+        element.addEventListener(event, action);
+      }
 
       function filterText(text, array) {
         let regexp = new RegExp(text, "gi");
@@ -37,6 +42,7 @@
       }
 
       function displayText(e) {
+        const suggestions = document.querySelector(".suggestions");
         if (cities === []) {
           this.value = "";
           alert(`資料仔入中，請稍候。`);
@@ -59,14 +65,12 @@
               currency: "EUR"
             });
             return `
-    <li>
-        <span class="name">${displayCity}, ${displayState}</span>
-        <span class="location">${displayPopulation}</span>
-    </li>
-`;
-          })
-          .join("");
-
+                <li>
+                    <span class="name">${displayCity}, ${displayState}</span>
+                    <span class="location">${displayPopulation}</span>
+                </li>
+              `;
+          }).join("");
         suggestions.innerHTML = data;
       }
     </script>
