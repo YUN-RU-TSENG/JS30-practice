@@ -74,9 +74,8 @@
       input.forEach((e) => e.addEventListener('input', setClassProperty))
 
       function setClassProperty(e) {
-        // console.log(this)
         const unit = this.dataset.sizing || '';
-        document.documentElement.style.setProperty( `--${this.name}`, this.value + unit);
+        document.body.style.setProperty( `--${this.name}`, this.value + unit);
       }
 
       // const img = document.querySelector(".img");

@@ -55,11 +55,12 @@
       function heightLight(e) {
         const DOMRect = this.getBoundingClientRect();
         console.log(DOMRect);
+        console.log(window);
         const elememtValue = {
           width: DOMRect.width,
           height: DOMRect.height,
-          top: DOMRect.y,
-          left: DOMRect.x
+          top: DOMRect.y + window.scrollY,
+          left: DOMRect.x + window.scrollX
         }
         heightLightElement.style.width = `${elememtValue.width}px`
         heightLightElement.style.height = `${elememtValue.height}px`

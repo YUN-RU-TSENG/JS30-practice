@@ -35,12 +35,17 @@ function paintToCanvas(e) {
 }
 
 function rgbSplit(pixels) {
-  for (let i = 0; i < pixels.data.length; i += 4) {
-    pixels.data[i - 150] = pixels.data[i + 0]; // RED
-    pixels.data[i + 500] = pixels.data[i + 1]; // GREEN
-    pixels.data[i - 550] = pixels.data[i + 2]; // Blue
-  }
-  return pixels;
+  pixels.data = pixels.data.reduce((acc, data, index, arr) => {
+    if(index % 4 == 0) arr[index + 4] = arr[index + 4] + 100;
+    if(index % 4 == 1) arr[index + 4] = arr[index + 4] - 50;
+    if(index % 4 == 2) arr[index + 4] = arr[index + 4] * 0.5;
+  })
+  // for (let i = 0; i < pixels.data.length; i += 4) {
+  //   pixels.data[i - 150] = pixels.data[i + 0]; // RED
+  //   pixels.data[i + 500] = pixels.data[i + 1]; // GREEN
+  //   pixels.data[i - 550] = pixels.data[i + 2]; // Blue
+  // }
+  // return pixels;
   // return pixels.data.map((pixel, index) =>{
   //     if(index%4 === 0) return 255;
   //     if(index%4 === 1) return 10;
@@ -60,4 +65,5 @@ function takePhoto(e){
     link.innerHTML = `<img src="${data}" alt="Handsome Man" />`
     strip.insertBefore(link, strip.firstChild)
 }
+
 

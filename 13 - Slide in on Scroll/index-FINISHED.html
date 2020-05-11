@@ -43,23 +43,25 @@
   </div>
 
   <script>
-    function debounce(func, wait = 20, immediate = true) {
+
+    function debounce(func, wait = 10, immediate = true) {
       var timeout;
       return function() {
-        var context = this, args = arguments;
+        // var context = this;
         var later = function() {
           timeout = null;
-          if (!immediate) func.apply(context, args);
+          // if (!immediate) func.apply(context, null);
         };
         var callNow = immediate && !timeout;
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
+        if (callNow) func();
       };
     };
 
-    const sliderImages = document.querySelectorAll('.slide-in');
 
+    window.addEventListener('scroll', debounce(checkSlide));
+    const sliderImages = document.querySelectorAll('.slide-in');
     function checkSlide() {
       sliderImages.forEach(sliderImage => {
         // half way through the image
@@ -77,7 +79,6 @@
     }
 
     window.addEventListener('scroll', debounce(checkSlide));
-
   </script>
 
   <style>
@@ -88,11 +89,11 @@
       font-size: 20px;
       font-weight: 200;
     }
-    
+
     body {
       margin: 0;
     }
-    
+
     *, *:before, *:after {
       box-sizing: inherit;
     }
@@ -127,7 +128,7 @@
     .align-left.slide-in {
       transform: translateX(-30%) scale(0.95);
     }
-    
+
     .align-right.slide-in {
       transform: translateX(30%) scale(0.95);
     }

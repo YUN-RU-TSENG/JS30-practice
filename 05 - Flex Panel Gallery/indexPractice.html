@@ -38,21 +38,28 @@
       </section>
     </main>
     <script>
+      const touchSection = Array.from(document.querySelectorAll("section"));
 
-        const touchSection = Array.from(document.querySelectorAll('section'))
+      touchSection.forEach(element =>
+        element.addEventListener("click", addClass)
+      );
+      touchSection.forEach(element =>
+        element.addEventListener("transitionstart", removeClass)
+      );
 
-        touchSection.forEach( element => element.addEventListener('click', addClass))
-        touchSection.forEach( element => element.addEventListener('transitionstart', removeClass))
+      function addClass(e) {
+        console.dir(e);
+        console.log(e.target);
+        touchSection
+          .filter(element => element != this)
+          .forEach(element => element.classList.remove("show"));
+        this.classList.toggle("show");
+      }
 
-        function addClass(e){
-          touchSection.filter( element => element != this ).forEach( element => element.classList.remove('show'))
-          this.classList.toggle('show')
-        }
-
-        function removeClass(e) {
-          if(e.propertyName.includes('flex')) e.currentTarget.classList.toggle('showParagraph')
-        }
-
+      function removeClass(e) {
+        if (e.propertyName.includes("flex"))
+          e.currentTarget.classList.toggle("showParagraph");
+      }
     </script>
   </body>
 </html>

@@ -46,6 +46,7 @@
 
         function addSpeakerOption() {
           voices = this.getVoices();
+          console.log(3)
           voicesDropdown.innerHTML = voices
             .filter(value => value.lang.includes("zh-"))
             .map(
@@ -71,7 +72,9 @@
           speakText();
         }
 
-        speechSynthesis.addEventListener("voiceschanged", addSpeakerOption);
+        console.log(1)
+        speechSynthesis.addEventListener("start", addSpeakerOption);
+        console.log(2)
         voicesDropdown.addEventListener("change", setVoice);
         options.forEach(element =>
           element.addEventListener("change", setSpeechSynthesisUtterance)

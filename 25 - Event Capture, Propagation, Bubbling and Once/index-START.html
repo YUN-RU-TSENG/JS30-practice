@@ -38,11 +38,13 @@
     </div>
   </div>
 <button>btn</button>
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener">link</a>
 <script>
   const get = (element) => document.querySelector(element)
   const getAll = (element) => document.querySelectorAll(element)
   const div = getAll('div')
   const button = get('button')
+  const link = get('a')
 
   div.forEach(element => element.addEventListener('click', printEventPhase,{
     capture: true,
@@ -50,8 +52,18 @@
     passive: false
   }))
 
-  button.addEventListener('click', function(){
+  button.addEventListener('click', function(e){
     console.log(e.target)
+    e.stopPropagation();
+  },{
+    passive: false
+  })
+
+  link.addEventListener('click', function(e){
+    console.log(e.target)
+    // e.preventDefault();
+  },{
+    passive: false
   })
 
 
@@ -60,10 +72,7 @@
     console.log('e.target.className',e.target.className)
     console.log('e.eventPhase',e.eventPhase)
     console.log('----------')
-    e.stopPropagation();
   }
-
-
 
 </script>
 </body>

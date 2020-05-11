@@ -32,7 +32,7 @@ function timer(value){
 }
 
 function printCountTime(total){
-  const startSec = Math.floor(total % 60); // 不能用 round 的原因是因為裡面的時間假如進位，則會產生意外的變動。
+  const startSec = Math.floor(total % 60);
   const startMin = Math.floor((total - startSec) / 60);
   display_h1.innerHTML = `${startMin}:${startSec.toString().replace(/\b(?=\d$)/, '0')}`;
 }

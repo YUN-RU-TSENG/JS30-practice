@@ -26,12 +26,12 @@
       padding: 0;
       box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
     }
-    
+
     #bands li {
       border-bottom: 1px solid #efefef;
       padding: 20px;
     }
-    
+
     #bands li:last-child {
       border-bottom: 0;
     }
@@ -48,6 +48,22 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+printList(sortLetter(filterWord(bands)))
+
+function filterWord(arr){
+  return arr.slice().map(value => value.replace(/An |A |The /i,'').trim())
+}
+
+function sortLetter(arr){
+  return arr.slice().sort()
+}
+
+function printList(arr){
+  const body = document.querySelector('body')
+  const ul = document.querySelector('ul')
+  const text = arr.map(value => `<li>${value}</li>`).join('')
+  ul.innerHTML = text
+}
 
 </script>
 

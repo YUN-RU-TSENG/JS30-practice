@@ -8,14 +8,14 @@ function getVideo() {
   navigator.mediaDevices.getUserMedia({ video: true, audio: false })
     .then(localMediaStream => {
       console.log(localMediaStream);
-    
-//  DEPRECIATION : 
+
+//  DEPRECIATION :
 //       The following has been depreceated by major browsers as of Chrome and Firefox.
 //       video.src = window.URL.createObjectURL(localMediaStream);
 //       Please refer to these:
 //       Depreceated  - https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL
 //       Newer Syntax - https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/srcObject
-      
+
       video.srcObject = localMediaStream;
       video.play();
     })
@@ -37,7 +37,7 @@ function paintToCanvas() {
     // mess with them
     // pixels = redEffect(pixels);
 
-    pixels = rgbSplit(pixels);
+    rgbSplit(pixels);
     // ctx.globalAlpha = 0.8;
 
     // pixels = greenScreen(pixels);
@@ -70,12 +70,18 @@ function redEffect(pixels) {
 }
 
 function rgbSplit(pixels) {
-  for (let i = 0; i < pixels.data.length; i+=4) {
-    pixels.data[i - 150] = pixels.data[i + 0]; // RED
-    pixels.data[i + 500] = pixels.data[i + 1]; // GREEN
-    pixels.data[i - 550] = pixels.data[i + 2]; // Blue
-  }
-  return pixels;
+  // for (let i = 0; i < pixels.data.length; i+=4) {
+  //   pixels.data[i - 150] = pixels.data[i + 0]; // RED
+  //   pixels.data[i + 500] = pixels.data[i + 1]; // GREEN
+  //   pixels.data[i - 550] = pixels.data[i + 2]; // Blue
+  // }
+  pixels.data.reduce((acc, data, index, arr) => {
+    if(index % 4 == 0) arr[index + 4] = arr[index + 4] + 100;
+    if(index % 4 == 1) arr[index + 4] = arr[index + 4] - 50;
+    if(index % 4 == 2) arr[index + 4] = arr[index + 4] * 0.5;
+  })
+  
+  // return ;
 }
 
 function greenScreen(pixels) {

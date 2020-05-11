@@ -16,32 +16,32 @@ function changeIcon(e) {
 }
 
 function skipAudio(e) {
-    video.currentTime += Math.floor(this.dataset.skip);
-    // console.log(Number(e.target.dataset.skip))
-    console.dir(video.duration)
-    // 這裡遇到的問題是報錯，這是因為之前的選擇器選錯了！
+  video.currentTime += Math.floor(this.dataset.skip);
+  // console.log(Number(e.target.dataset.skip))
+  console.dir(video.duration);
+  // 這裡遇到的問題是報錯，這是因為之前的選擇器選錯了！
 }
 
-function changeProcess(e){
-    const percent = (video.currentTime / video.duration) * 100
-    progressBar.style.flexBasis = `${percent}%`
-    // video.currentTime += (e.offsetX / progress.duration) * video
+function changeProcess(e) {
+  const percent = (video.currentTime / video.duration) * 100;
+  progressBar.style.flexBasis = `${percent}%`;
+  // video.currentTime += (e.offsetX / progress.duration) * video
 }
 
-function changePercentVideo(e){
-    const change = (e.offsetX / progress.offsetWidth ) * video.duration
-    video.currentTime = change
+function changePercentVideo(e) {
+  const change = (e.offsetX / progress.offsetWidth) * video.duration;
+  video.currentTime = change;
 }
 
-function changePercentVideo(e){
-    const change = (e.offsetX / progress.offsetWidth ) * video.duration
-    video.currentTime = change
+function changePercentVideo(e) {
+  const change = (e.offsetX / progress.offsetWidth) * video.duration;
+  video.currentTime = change;
 }
 
 player__button.addEventListener("click", audioPlay);
 player__button.addEventListener("click", changeIcon);
-progress.addEventListener('click', changeProcess)
-progress.addEventListener('click', changePercentVideo)
+progress.addEventListener("click", changeProcess);
+progress.addEventListener("click", changePercentVideo);
 skip__button.forEach(e => {
   e.addEventListener("click", skipAudio);
 });

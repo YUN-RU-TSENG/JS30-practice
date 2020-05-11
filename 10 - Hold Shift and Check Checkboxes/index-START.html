@@ -95,26 +95,33 @@
     </div>
 
     <script>
-      const checkboxes = Array.from(
-        document.querySelectorAll('input[type = "checkbox"]')
+      const items = Array.from(document.querySelectorAll(".item input"));
+      let indexOfStart = null;
+      let shiftIsKeydown = false;
+
+      items.forEach((element, index) =>
+        element.addEventListener("click", function(e) {
+          if(!this.checked) {
+            indexOfStart = null;
+            return;
+          }
+          if (indexOfStart === null || !shiftIsKeydown) {
+            indexOfStart = index;
+          } else {
+            items.slice(Math.min(index, indexOfStart), Math.max(index, indexOfStart))
+                  .forEach(element => (element.checked = true));
+            indexOfStart = index;
+          }
+        })
       );
 
-      checkboxes.forEach(ele => ele.addEventListener("click", sliceScope));
+      window.addEventListener("keydown", e => {
+        if (e.key === "Shift") shiftIsKeydown = true;
+      });
 
-      let lastChecked = null;
-
-      function sliceScope(e) {
-        if (lastChecked === null) {
-          lastChecked = checkboxes.indexOf(this);
-        } else {
-          if (e.shiftKey) {
-            let currentChecked = checkboxes.indexOf(this);
-            checkboxes
-              .slice(Math.min(lastChecked, currentChecked), Math.max(lastChecked, currentChecked))
-              .forEach(element => {element.checked = true;});}
-          lastChecked = checkboxes.indexOf(this);
-        }
-      }
+      window.addEventListener("keyup", e => {
+        if (e.key === "Shift") shiftIsKeydown = false;
+      });
 
     </script>
   </body>

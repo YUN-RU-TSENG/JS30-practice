@@ -23,7 +23,6 @@
     <script>
       (function() {
         const progressBar = document.querySelector(".speed");
-
         progressBar.addEventListener("mousemove", setVideoProgressSpeed);
 
         function setVideoProgressSpeed(e) {
@@ -35,9 +34,8 @@
           };
 
           progressData.percent = (e.offsetY / this.clientHeight) * 100 + "%"
-          progressData.fourTimes = ((e.offsetY / this.clientHeight) * 4).toFixed(2)
+          progressData.fourTimes = (((e.offsetY / this.clientHeight) * 4) + .25).toFixed(2)
 
-          if (progressData.fourTimes < 0.25) return;
           progressInner.style.height = progressData.percent;
           progressInner.textContent = `${progressData.fourTimes}X`;
           video.playbackRate = progressData.fourTimes;
