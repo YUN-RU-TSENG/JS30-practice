@@ -55,51 +55,6 @@
     <audio data-key="75" src="sounds/tom.wav"></audio>
     <audio data-key="76" src="sounds/tink.wav"></audio>
 
-    <script>
-      (() => {
-        var keys = document.querySelectorAll(".key");
-        function playMusicAndAddClass(event) {
-          const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
-          const button = document.querySelector(`div[data-key="${event.keyCode}"]`);
-          audio && playMusic(audio);
-          button && addClass(button);
-        }
-
-        function playMusic(audioElement) {
-          audioElement.currentTime = 0;
-          audioElement.play();
-        }
-
-        function addClass(buttonElement) {
-          buttonElement.classList.add("playing");
-        }
-
-        function removeClassAndStopMusic(event) {
-          const button = document.querySelector(`div[data-key="${event.keyCode}"]`);
-          const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
-          audio && stopMusic(audio)
-          button && removeClass(button)
-        }
-
-        function removeClass(buttonElement) {
-          buttonElement.classList.remove("playing");
-        }
-
-        function stopMusic(audioElement){
-          audioElement.pause()
-        }
-
-        // function removeClassVersion2(event) {
-        //   if (e.propertyName === "transform") e.target.classList.remove("playing");
-        // }
-
-        // keys.forEach((key) =>
-        //   key.addEventListener("transitionend", removeClassVersion2)
-        // ); // 老師使用的這個版本會有問題，會導致連點擊的時候，出現 bug
-
-        document.body.addEventListener('keyup', removeClassAndStopMusic)
-        document.body.addEventListener("keydown", playMusicAndAddClass); // 他就是從 body 開始回傳
-      })();
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
