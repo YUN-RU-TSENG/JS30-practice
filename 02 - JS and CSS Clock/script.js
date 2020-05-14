@@ -1,7 +1,9 @@
 (() => {
-  const hourHand = document.querySelector(".hour-hand");
-  const minHand = document.querySelector(".min-hand");
-  const secondHand = document.querySelector(".second-hand");
+
+  // debugger;
+  // setInitialTime();
+  // setInterval(setCurrentTime, 1000);
+
   let clockTime = {};
 
   function setInitialTime(){
@@ -10,7 +12,7 @@
   }
 
   function setCurrentTime(){
-    setCurrentTimeData();
+    addTimeData();
     setTimeDisaply();
   }
 
@@ -23,12 +25,16 @@
   }
 
   function setTimeDisaply(){
+    const hourHand = document.querySelector(".hour-hand");
+    const minHand = document.querySelector(".min-hand");
+    const secondHand = document.querySelector(".second-hand");
+    
     secondHand.style.transform = timeToDegress(clockTime.second, "second");
     minHand.style.transform = timeToDegress(clockTime.minute, "minute");
     hourHand.style.transform = timeToDegress(clockTime.hour, "hour");
   }
 
-  function setCurrentTimeData() {
+  function addTimeData() {
     clockTime.second += 1;
     clockTime.minute += 1 / 60;
     clockTime.hour += 1 / 3600;
@@ -47,6 +53,7 @@
 
   setInitialTime();
   setInterval(setCurrentTime, 1000);
+
 })();
 
 
