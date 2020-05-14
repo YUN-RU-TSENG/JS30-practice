@@ -1,7 +1,8 @@
 (() => {
   // debugger();
-  // var keys = document.querySelectorAll(".key");
 
+  var keys = document.querySelectorAll(".key");
+  // fun name(){} 編譯時期就已經存了，所以 document 可以放上面！
   document.body.addEventListener("keyup", removeClassAndStopMusic);
   document.body.addEventListener("keydown", playMusicAndAddClass); // 他就是從 body 開始回傳
 
@@ -45,4 +46,5 @@
   // keys.forEach((key) =>
   //   key.addEventListener("transitionend", removeClassVersion2)
   // ); // 老師使用的這個版本會有問題，會導致連點擊的時候，出現 bug
+  
 })();
