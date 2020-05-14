@@ -7,15 +7,18 @@
   <body>
     <div class="clock">
       <div class="clock-face">
+        <h1>時間就是金錢</h1>
         <div class="hand hour-hand"></div>
         <div class="hand min-hand"></div>
         <div class="hand second-hand"></div>
+        <div class="middle"></div>
       </div>
     </div>
 
     <style>
       html {
-        background: #018ded url(http://unsplash.it/1500/1000?image=881&blur=5);
+        background: #018ded
+          url(https://images.pexels.com/photos/3142540/pexels-photo-3142540.jpeg?cs=srgb&dl=pexels-3142540.jpg&fm=jpg);
         background-size: cover;
         font-family: "helvetica neue";
         text-align: center;
@@ -31,16 +34,21 @@
         align-items: center;
       }
 
+      h1{
+        font-size: 12px;
+        color: white;
+        font-weight: 100;
+      }
+
       .clock {
-        width: 30rem;
-        height: 30rem;
-        border: 20px solid white;
+        width: 45rem;
+        height: 45rem;
+        border: 6px solid white;
         border-radius: 50%;
         margin: 50px auto;
         position: relative;
         padding: 2rem;
-        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
-          inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1)
       }
 
       .clock-face {
@@ -55,58 +63,46 @@
       .hand {
         width: 50%;
         height: 10px;
-        background: black;
+        background: white;
         position: absolute;
         top: 50%;
+        border-radius: 2px;
+        transition: all 1s linear;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1)
       }
 
       .hour-hand {
-        /* transform: rotate(90deg); */
+        transform: rotate(90deg);
         transform-origin: 100%;
-        transition-timing-function: cubic-bezier(0.8, 0.1, 0.1, 0.8);
       }
 
       .min-hand {
-        /* transform: rotate(90deg); */
+        transform: rotate(90deg);
         height: 4px;
         transform-origin: 100%;
-        transition-timing-function: cubic-bezier(0.8, 0.1, 0.1, 0.8);
       }
 
       .second-hand {
-        /* transform: rotate(90deg); */
+        transform: rotate(90deg);
         height: 2px;
         transform-origin: 100%;
-        transition-timing-function: cubic-bezier(0.8, 0.1, 0.1, 0.8);
+      }
+
+      .middle{
+        width: 8%;
+        height: 8%;
+        border-radius: 4px;
+        background: white;
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        margin: auto;
+        transition: all 1s linear;
       }
     </style>
 
-    <script>
-      window.setInterval(addInlineStyle, 1000)
-
-      function addInlineStyle() {
-        const time = new Date();
-        const currentTime = {};
-        const angle = {};
-
-        const second_hand = document.querySelector(".second-hand");
-        currentTime["second"] = time.getSeconds();
-        angle.second = (currentTime.second / 60) * 360 + 90;
-        second_hand.style.transform = `rotate(${angle.second}deg)`;
-
-        const min_hand = document.querySelector(".min-hand");
-        currentTime["minute"] = time.getMinutes();
-        angle.minute =
-          (currentTime.minute / 60) * 360 + (currentTime.second / 60) * 6 + 90;
-        min_hand.style.transform = `rotate(${angle.minute}deg)`;
-
-
-        const hour_hand = document.querySelector(".hour-hand");
-        currentTime["hour"] = time.getHours();
-        angle.hour = (currentTime.hour / 12) * 360 + (currentTime.minute / 60) * 30 + 90;
-        hour_hand.style.transform = `rotate(${angle.hour}deg)`;
-        
-      }
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
