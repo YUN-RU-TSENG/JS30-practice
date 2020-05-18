@@ -130,12 +130,10 @@
   </div>
 
   <script>
-
     var panels = document.querySelectorAll('div.panel')
     console.log(panels)
     panels.forEach((panel) => panel.addEventListener('click',(e) => panel.classList.toggle('panel-change')))
     panels.forEach((panel) => panel.addEventListener('transitionrun',(e) => panel.classList.toggle('panel-changes')))
-
   </script>
 
 </body>
