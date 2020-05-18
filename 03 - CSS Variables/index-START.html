@@ -18,19 +18,29 @@
         data-sizing="px"
       />
 
-      <label for="blur">Blur:</label>
+      <label for="blur">invert:</label>
       <input
         id="blur"
         type="range"
         name="blur"
         min="0"
-        max="10"
+        max="100"
         value="3"
-        data-sizing="px"
+        data-sizing="%"
       />
 
-      <label for="base">Base Color</label>
+      <label for="base">Base Color:</label>
       <input id="base" type="color" name="base" value="#eecc5c" />
+
+      <label for="transition">transition-time:</label>
+      <select name="transition-time" id="transition">
+        <option value="linear">linear</option>
+        <option value="cubic-bezier(.29, 1.01, 1, -0.68)" selected
+          >cubic-bezier(.29, 1.01, 1, -0.68)</option
+        >
+        <option value="steps(6, end)">steps(6, end)</option>
+        <option value="ease-in-out">ease-in-out</option>
+      </select>
     </div>
 
     <div class="img"></div>
@@ -40,17 +50,22 @@
         --spacing: 10px;
         --blur: 3px;
         --base: #eecc5c;
+        --transition-time: cubic-bezier(.29, 1.01, 1, -0.68);
       }
       body {
         text-align: center;
         background: #19caad;
         color: white;
-        font-family: "helvetica neue", sans-serif;
-        font-weight: 100;
-        font-size: 50px;
+        font-family: "sans-serif";
+        font-weight: 300;
+        font-size: 40px;
       }
       .helightLignt {
         color: var(--base);
+        font-weight: 900;
+        text-shadow: 0px 0px 10px #fff6;
+        transition: all 1s cubic-bezier(0.29, 1.01, 1, -0.68);
+        transition-timing-function: var(--transition-time);
       }
       .controls {
         margin-bottom: 50px;
@@ -60,14 +75,22 @@
       }
       .img {
         margin: 0 auto;
-        background: url(https://images.pexels.com/photos/4273439/pexels-photo-4273439.jpeg?cs=srgb&dl=pexels-4273439.jpg&fm=jpg)
-          no-repeat;
+        background: url(https://images.pexels.com/photos/4312843/pexels-photo-4312843.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+        background-size: cover;
         background-position: center;
         width: 840px;
         height: 540px;
         border: var(--spacing) solid var(--base);
-        filter: blur(var(--blur));
+        /* filter: blur(var(--blur)); */
+        filter: invert(var(--blur));
         /* background-color: ; */
+        transition: all 1s cubic-bezier(0.29, 1.01, 1, -0.68);
+        transition-timing-function: var(--transition-time);
+      }
+
+      select {
+        height: 35px;
+        vertical-align: middle;
       }
     </style>
 
