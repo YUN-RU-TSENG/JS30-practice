@@ -28,7 +28,7 @@
     const hourHand = document.querySelector(".hour-hand");
     const minHand = document.querySelector(".min-hand");
     const secondHand = document.querySelector(".second-hand");
-    
+
     secondHand.style.transform = timeToDegress(clockTime.second, "second");
     minHand.style.transform = timeToDegress(clockTime.minute, "minute");
     hourHand.style.transform = timeToDegress(clockTime.hour, "hour");
@@ -55,15 +55,6 @@
   setInterval(setCurrentTime, 1000);
 
 })();
-
-
-
-
-
-
-
-
-
 
 
 

@@ -46,5 +46,5 @@
   // keys.forEach((key) =>
   //   key.addEventListener("transitionend", removeClassVersion2)
   // ); // 老師使用的這個版本會有問題，會導致連點擊的時候，出現 bug
-  
+
 })();
