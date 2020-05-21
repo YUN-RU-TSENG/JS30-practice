@@ -35,7 +35,7 @@
       }
 
       function displayMatches() {
-        const matchArray = findMatches(this.value, cities);
+        const matchArray = findMatches(this.value, cities).length;
         const html = matchArray
           .map(place => {
             const regex = new RegExp(this.value, "gi");
