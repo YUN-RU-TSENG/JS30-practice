@@ -20,9 +20,11 @@
    * @param {*} text 代表過濾的文字
    */
   function filterWord(Group, text){
-    return Group.filter((item) => {
-      return item.city.match(text) || item.state.match(text);
-    });
+    return Group.filter((item) => item.city.match(text) || item.state.match(text));
+  }
+
+  function formatNumber(number){
+    return Number(number).toLocaleString('zh-tw')
   }
 
   /**
@@ -44,7 +46,7 @@
       return `
       <li>
         <span class="name">${cityName}, ${stateName}</span>
-        <span class="population">${Number(place.population).toLocaleString('zh-tw')}</span>
+        <span class="population">${formatNumber(place.population)}</span>
       </li>`
       //  <span class="population">${numeral(city.population).format(0,000)}</span>
     }).join('');
