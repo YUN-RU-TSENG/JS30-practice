@@ -1,7 +1,7 @@
 html {
   box-sizing: border-box;
-  background: #ffc600;
-  font-family: 'helvetica neue';
+  background: #19caad;
+  font-family: 'sans-serif';
   font-size: 20px;
   font-weight: 200;
 }
@@ -12,11 +12,11 @@ html {
 
 input {
   width: 100%;
-  padding: 20px;
+  padding: 10px;
 }
 
 .search-form {
-  max-width: 400px;
+  max-width: 500px;
   margin: 50px auto;
 }
 
@@ -53,15 +53,16 @@ input.search {
   display: flex;
   justify-content: space-between;
   text-transform: capitalize;
+  font-weight: 100;
 }
 
 .suggestions li:nth-child(even) {
-  transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+  transform: perspective(100px) rotateX(1deg) translateY(1px) scale(1.001);
   background: linear-gradient(to bottom,  #ffffff 0%,#EFEFEF 100%);
 }
 
 .suggestions li:nth-child(odd) {
-  transform: perspective(100px) rotateX(-3deg) translateY(3px);
+  transform: perspective(100px) rotateX(-1deg) translateY(1px);
   background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%);
 }
 
@@ -70,5 +71,6 @@ span.population {
 }
 
 .hl {
-  background: #ffc600;
+  background: lightsalmon;
+  font-weight: 300;
 }

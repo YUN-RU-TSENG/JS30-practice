@@ -13,67 +13,8 @@
         <li>or a state</li>
       </ul>
     </form>
-    <script>
-      const dataUrl =
-        "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
-
-      catchData(dataUrl);
-      addListener("input.search", "input", "click");
-
-      const cities = [];
-      function catchData(dataUrl) {
-        fetch(dataUrl)
-          .then(response => response.json())
-          .then(data => cities.push(...data))
-          .catch(err => {
-            alert("資料請求錯誤，請確認網路是否連線。");
-            console.log(err);
-          });
-      }
-
-      function addListener(className, event, action) {
-        const element = document.querySelector(className);
-        element.addEventListener(event, action);
-      }
-
-      function filterText(text, array) {
-        let regexp = new RegExp(text, "gi");
-        return array.filter(value => regexp.test(value.city));
-      }
-
-      function displayText(e) {
-        const suggestions = document.querySelector(".suggestions");
-        if (cities === []) {
-          this.value = "";
-          alert(`資料仔入中，請稍候。`);
-          return;
-        }
-        let text = filterText(this.value, cities);
-        let data = text
-          .map(value => {
-            const regexp = new RegExp(this.value, "gi");
-            const displayCity = value.city.replace(
-              regexp,
-              `<span class="hl">${this.value}</span>`
-            );
-            const displayState = value.state.replace(
-              regexp,
-              `<span class="hl">${this.value}</span>`
-            );
-            const displayPopulation = value.population.toLocaleString("es-ES", {
-              style: "currency",
-              currency: "EUR"
-            });
-            return `
-                <li>
-                    <span class="name">${displayCity}, ${displayState}</span>
-                    <span class="location">${displayPopulation}</span>
-                </li>
-              `;
-          })
-          .join("");
-        suggestions.innerHTML = data;
-      }
-    </script>
+    <!-- 已過時，現在少用 -->
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script> -->
+    <script src="main.js"></script>
   </body>
 </html>
