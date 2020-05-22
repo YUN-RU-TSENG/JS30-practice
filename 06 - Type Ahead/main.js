@@ -1,4 +1,6 @@
-(() =>{   const baseURL =
+(() =>{
+
+  const baseURL =
     "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
 
   const cities = [];
@@ -15,7 +17,7 @@
   /**
    *
    * @brief 這是一組篩選符合輸入文字的 filter function
-   * 
+   *
    * @param {*} font 過濾的文字
    * @param {*} places 輸入的數組
    * @return 過濾 font 後剩下的數組內容
