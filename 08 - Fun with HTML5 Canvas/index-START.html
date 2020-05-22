@@ -4,62 +4,33 @@
     <meta charset="UTF-8" />
     <title>HTML5 Canvas</title>
   </head>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 24px;
+      padding-top: 12px;
+      background-color: #b2f5ea;
+    }
+    section{
+      box-shadow: 0px 0px 10px #cfcfcf;
+      border-radius: 4px;
+      background-color: #fff;
+    }
+    h3{
+      color: #19caad;
+      text-align: center;
+      font-variant: small-caps;
+      font-size: 30px;
+      margin: 0;
+      margin-bottom: 12px;
+    }
+  </style>
   <body>
-    <canvas id="draw" width="800" height="800"></canvas>
-    <script>
-      const canvas = document.querySelector("#draw");
-      const context = canvas.getContext("2d");
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      context.strokeStyle = "#BADA55";
-      context.lineJoin = "round";
-      context.lineCap = "round";
-      context.lineWidth = 100;
-
-      let isDrawing = false;
-      let lastX = 0;
-      let lastY = 0;
-      let hue = 0;
-      let direction = true;
-
-      function draw(e) {
-        if (!isDrawing) return;
-        console.log(e);
-        context.strokeStyle = `hsl(${hue}, 100%, 60%)`;
-        context.beginPath();
-        context.moveTo(lastX, lastY);
-        context.lineTo(e.offsetX, e.offsetY);
-        context.stroke();
-        [lastX, lastY] = [e.offsetX, e.offsetY];
-        hue++;
-        if (hue >= 360) {
-          hue = 0;
-        }
-        if (context.lineWidth >= 100 || context.lineWidth <= 1) {
-          direction = !direction;
-        }
-
-        if (direction) {
-          context.lineWidth++;
-        } else {
-          context.lineWidth--;
-        }
-      }
-      canvas.addEventListener("mousedown", e => {
-        isDrawing = true;
-        [lastX, lastY] = [e.offsetX, e.offsetY];
-      });
-      canvas.addEventListener("mousemove", draw);
-      canvas.addEventListener("mouseout", () => (isDrawing = false));
-      canvas.addEventListener("mouseup", () => (isDrawing = false));
-    </script>
-
-    <style>
-      html,
-      body {
-        margin: 0;
-      }
-    </style>
+    <h3>color</h3>
+    <section>
+      <canvas id="draw" width="800" height="700"></canvas>
+    </section>
+    <script src="main.js"></script>
   </body>
-  ｀
 </html>
