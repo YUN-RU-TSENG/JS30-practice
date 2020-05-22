@@ -1,5 +1,4 @@
-(() => {
-  const baseURL =
+(() =>{   const baseURL =
     "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
 
   const cities = [];
@@ -16,11 +15,13 @@
   /**
    *
    * @brief 這是一組篩選符合輸入文字的 filter function
-   * @param {*} Group 輸入的數組
-   * @param {*} text 過濾的文字
+   * 
+   * @param {*} font 過濾的文字
+   * @param {*} places 輸入的數組
+   * @return 過濾 font 後剩下的數組內容
    */
-  function filterWord(Group, text){
-    return Group.filter((item) => item.city.match(text) || item.state.match(text));
+  function filterWord(places, font){
+    return places.filter((item) => item.city.match(font) || item.state.match(font));
   }
 
   function formatNumber(number){
@@ -30,11 +31,14 @@
   /**
    *
    * @brief 將篩選好的數組資料列印出來
+   * 該函數將會將篩選好的陣列內容列印到畫面上
+   *
    * @param {*} e 事件
+   * @return undefined
    */
   function displayKeyWord(e) {
     const keyWord = e.currentTarget.value;
-    !keyWord && location.reload(); // 每次不刪選時重新家載到最初頁面
+    !keyWord && location.reload();            // 每次不刪選時重新家載到最初頁面
 
     const regexp = new RegExp(keyWord, 'gi'); // 會每次編譯，使用/\/不會每次編譯
     const filterCities = filterWord(cities, regexp);
@@ -48,7 +52,7 @@
         <span class="name">${cityName}, ${stateName}</span>
         <span class="population">${formatNumber(place.population)}</span>
       </li>`
-      //  <span class="population">${numeral(city.population).format(0,000)}</span>
+      //  <span class="population">${numeral(city.population).format(0,000)}</span> 使用 library 解決
     }).join('');
   }
 
