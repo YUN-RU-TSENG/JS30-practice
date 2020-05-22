@@ -15,9 +15,9 @@
 
   /**
    *
-   * 這是一組篩選符合輸入文字的 filter function
-   * @param {*} Group 代表輸入的數組
-   * @param {*} text 代表過濾的文字
+   * @brief 這是一組篩選符合輸入文字的 filter function
+   * @param {*} Group 輸入的數組
+   * @param {*} text 過濾的文字
    */
   function filterWord(Group, text){
     return Group.filter((item) => item.city.match(text) || item.state.match(text));
@@ -29,7 +29,7 @@
 
   /**
    *
-   * 代表將篩選好的數組資料列印出來
+   * @brief 將篩選好的數組資料列印出來
    * @param {*} e 事件
    */
   function displayKeyWord(e) {
