@@ -56,6 +56,7 @@
       </li>`
       //  <span class="population">${numeral(city.population).format(0,000)}</span> 使用 library 解決
     }).join('');
+
   }
 
 })();
