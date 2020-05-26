@@ -1,4 +1,4 @@
-void (function playVideoIIFE() {
+void function playVideoIIFE() {
 
   const video = document.querySelector(".player .viewer");
   const toggle = document.querySelector(".player .toggle");
@@ -97,4 +97,5 @@ void (function playVideoIIFE() {
   progress.addEventListener("click", function (event) {
     return updateProgressBar.call(this, event, video);
   });
-})();
+
+}();
