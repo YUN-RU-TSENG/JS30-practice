@@ -19,28 +19,36 @@
 
     // Regular
     console.log('hello')
+
     // Interpolated
     console.log('Hello I am a %s %d string ', '😀', 12.55)
+
     // Styled
     console.log('%c I am pink text', 'font-size: 30px; color: pink; background: gray; text-shadow: 3px 3px 5px')
+
     // warning!
     console.warn('Danger')
+
     // Error :|
     console.error('Oops')
+
     // Info
     console.info('This is a information.')
+
     // Testing
     function a(){
       a + 11
     }
     b = false
     console.assert(a(),'it is noOOOOO')
+
     // clearing
     // console.clear()
     // Viewing DOM Elements
     var p = document.querySelector('p')
     console.log(p)
     console.dir(p)
+
     // Grouping together
     dogs.forEach(dog => {
       console.groupCollapsed(`${dog.name}`)
@@ -49,6 +57,7 @@
       console.log(`${dog.name} is ${dog.age * 7} years old`)
       console.groupEnd(`${dog.name}`)
     })
+
     // counting
     var A = '11'
     console.count('A')
@@ -73,11 +82,6 @@
     })
 
     console.table(dogs)
-    console.log(1000)
-    console.log(true)
-    console.log('aaa')
-    var a = {}
-    console.log(a)
 
   </script>
 </body>
