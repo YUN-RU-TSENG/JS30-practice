@@ -49,20 +49,13 @@
     // 設定筆畫全域變數變色，下一次會重新設定一次筆畫顏色
     if (hue === MAX_HUE_OF_HSL || hue === MIN_HUE_OF_HSL) huePath = !huePath;
     // 當顏色循環環，從另一個方向重新循環
-    huePath ? hue ++ : hue --;
+    !!huePath ? hue ++ : hue --;
 
     // 設定筆畫寬度全域變數變化
     if (canvasContext.lineWidth === 10 || canvasContext.lineWidth === 1) colorPath = !colorPath;
-    colorPath ? canvasContext.lineWidth ++ : canvasContext.lineWidth --;
+    !!colorPath ? canvasContext.lineWidth ++ : canvasContext.lineWidth --;
     // 設定本次的最終路徑儲存
     [lastX, lastY] = [e.offsetX, e.offsetY];
-
-    // console.log('e.clientX', e.clientX)
-    // console.log('e.offsetX', e.offsetX)
-    // console.log('e.pageX', e.pageX)
-    // console.log('e.screenX', e.screenX)
-    // console.log('e.layerX', e.layerX)
-
   }
 
   function openDraw(e) {

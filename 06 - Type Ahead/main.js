@@ -23,7 +23,7 @@
    * @return 過濾 font 後剩下的數組內容
    */
   function filterWord(places, font){
-    return places.filter((item) => item.city.match(font) || item.state.match(font));
+    return places.filter((place) => place.city.match(font) || place.state.match(font));
   }
 
   function formatNumber(number){
@@ -42,7 +42,7 @@
     const keyWord = e.currentTarget.value;
     !keyWord && location.reload();            // 每次不刪選時重新家載到最初頁面
 
-    const regexp = new RegExp(keyWord, 'gi'); // 會每次編譯，使用/\/不會每次編譯
+    const regexp = new RegExp(keyWord, 'gi');
     const filterCities = filterWord(cities, regexp);
 
     suggestions.innerHTML = filterCities.map((place) => {
@@ -56,7 +56,6 @@
       </li>`
       //  <span class="population">${numeral(city.population).format(0,000)}</span> 使用 library 解決
     }).join('');
-
   }
 
 })();

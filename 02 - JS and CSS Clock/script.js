@@ -4,7 +4,11 @@
   // setInitialTime();
   // setInterval(setCurrentTime, 1000);
 
-  let clockTime = {};
+  let clockTime;
+  clockTime = {};
+
+  setInitialTime();
+  setInterval(setCurrentTime, 1000);
 
   function setInitialTime(){
     setInitialTimeData();
@@ -50,9 +54,6 @@
             return `rotate(${((time % 12) / 12) * 360}deg)`
     }
   }
-
-  setInitialTime();
-  setInterval(setCurrentTime, 1000);
 
 })();
 
