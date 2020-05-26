@@ -12,13 +12,12 @@
 
   // make sure shift is click
   window.addEventListener("keydown", (e) => (e.key === "Shift") && (shiftIsKeydown = true));
-
   // make sure shift is click
   window.addEventListener("keyup", (e) => (e.key === "Shift") && (shiftIsKeydown = false));
 
   /**
    * 當按下 shift 案件時，可以複選之前到現在的 checkbox 按鈕
-   * 
+   *
    * @param {*} e
    * @param {*} index
    */
