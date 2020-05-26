@@ -1,50 +1,83 @@
-const video = document.querySelector("video");
-const player__button = document.querySelector(".toggle");
-const skip__button = document.querySelectorAll("[data-skip]");
-const progress = document.querySelector(".progress");
-const progressBar = document.querySelector(".progress__filled");
+void function playVideoIIFE() {
 
-function audioPlay(e) {
-  const method = video.paused ? "play" : "pause";
-  video[method]();
-}
+  // 變數宣告--------------------------------
+  // 註冊事件監聽元素
+  const video = document.querySelector('.player .viewer')
+  const toggle = document.querySelector('.player .toggle')
+  const ranges = document.querySelectorAll('.player .player__slider')
+  const progress = document.querySelector('.player .progress')
+  const skipButtons = document.querySelectorAll('.player [data-skip]')
 
-function changeIcon(e) {
-  const icon = video.paused ? "►" : "❚ ❚";
-  player__button.textContent = icon;
-  // 和 innerHTML 差別
-}
+  // 樣式更改元素
+  const progressBar = document.querySelector('.player .progress__filled')
 
-function skipAudio(e) {
-  video.currentTime += Math.floor(this.dataset.skip);
-  // console.log(Number(e.target.dataset.skip))
-  console.dir(video.duration);
-  // 這裡遇到的問題是報錯，這是因為之前的選擇器選錯了！
-}
 
-function changeProcess(e) {
-  const percent = (video.currentTime / video.duration) * 100;
-  progressBar.style.flexBasis = `${percent}%`;
-  // video.currentTime += (e.offsetX / progress.duration) * video
-}
+  // 事件註冊--------------------------------
+  video.addEventListener('play',  function(event){
+    void switchVideoIcon.call(this, event, toggle)
+  })
 
-function changePercentVideo(e) {
-  const change = (e.offsetX / progress.offsetWidth) * video.duration;
-  video.currentTime = change;
-}
+  video.addEventListener('pause', function(event){
+    void switchVideoIcon.call(this, event, toggle)
+  })
 
-function changePercentVideo(e) {
-  const change = (e.offsetX / progress.offsetWidth) * video.duration;
-  video.currentTime = change;
-}
+  video.addEventListener('timeupdate', function(event) {
+    void updateTimeDisplay.call(this, event, progressBar)
+  })
 
-player__button.addEventListener("click", audioPlay);
-player__button.addEventListener("click", changeIcon);
-progress.addEventListener("click", changeProcess);
-progress.addEventListener("click", changePercentVideo);
-skip__button.forEach(e => {
-  e.addEventListener("click", skipAudio);
-});
+  toggle.addEventListener('click', function(event){
+    void toggleVideo.call(this, event, video)
+  })
 
-// 偵測到畫面變動就會產生影片進度條
-// 偵測到播放暫停就會產生變動
+  skipButtons.forEach((skipButton) => {
+    skipButton.addEventListener('click', function(event){
+      void skipVideo.call(this, event, video)
+    })
+  })
+
+  ranges.forEach((range) => {
+    range.addEventListener('input', function(event){
+      void updateValue.call(this, event, video)
+    })
+  })
+
+  progress.addEventListener('click', function(event){
+    return updateProgressBar.call(this, event, video)
+  })
+
+
+  // 事件函式--------------------------------
+  // play pause change
+  function toggleVideo(event, videoElement){
+    videoElement.paused ? videoElement.play() : videoElement.pause()
+  }
+
+  // play icon change
+  function switchVideoIcon(event, toggleElement){
+    const icon = event.currentTarget.paused ?  '►' : '❚❚'
+    toggleElement.textContent = icon
+  }
+
+  // play progressbar display change
+  function updateTimeDisplay(event, progressElement){
+    const percent = (event.currentTarget.currentTime / event.currentTarget.duration) * 100
+    progressElement.style.flexBasis = `${percent}%`
+  }
+
+  // skip video time
+  function skipVideo(event, videoElement){
+    videoElement.currentTime += parseFloat(event.currentTarget.dataset.skip);
+  }
+
+  // update volume and speed time
+  function updateValue(event,videoElement){
+    videoElement[event.currentTarget.name] = event.currentTarget.value
+  }
+
+  // scroll progress to change vide time
+  function updateProgressBar(event, videoElement){
+    const percent = (event.offsetX / event.currentTarget.offsetWidth) * parseFloat(videoElement.duration)
+    videoElement.currentTime = percent
+  }
+
+}();

@@ -98,7 +98,6 @@ body {
 }
 
 .progress__filled {
-  width: 50%;
   background: #ffc600;
   flex: 0;
   flex-basis: 50%;
