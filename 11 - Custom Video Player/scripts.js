@@ -27,8 +27,10 @@ void function playVideoIIFE() {
    * @param {*} toggleElement
    */
   function switchVideoIcon(event, toggleElement) {
-    const icon = event.currentTarget.paused ? "►" : "❚❚";
-    toggleElement.textContent = icon;
+    const pauseIcon = '<span>&#10074;&#10074;<span>';
+    const playIcon = '<span>&#9658;<span>'
+
+    toggleElement.innerHTML = event.currentTarget.paused ? playIcon : pauseIcon
   }
   video.addEventListener("pause", function (event) {
     void switchVideoIcon.call(this, event, toggle);
@@ -44,9 +46,10 @@ void function playVideoIIFE() {
    * @param {*} progressElement
    */
   function updateTimeDisplay(event, progressElement) {
-    const percent =
-      (event.currentTarget.currentTime / event.currentTarget.duration) * 100;
-    progressElement.style.flexBasis = `${percent}%`;
+    const videoCurrentTime = event.currentTarget.currentTime;
+    const videoTime = event.currentTarget.duration;
+
+    progressElement.style.flexBasis = `${(videoCurrentTime / videoTime) * 100}%`;
   }
   video.addEventListener("timeupdate", function (event) {
     void updateTimeDisplay.call(this, event, progressBar);
@@ -60,6 +63,8 @@ void function playVideoIIFE() {
    */
   function skipVideo(event, videoElement) {
     videoElement.currentTime += parseFloat(event.currentTarget.dataset.skip);
+    // videoElement.currentTime += +(event.currentTarget.dataset.skip);
+    // videoElement.currentTime += Number(event.currentTarget.dataset.skip);
   }
   skipButtons.forEach((skipButton) => {
     skipButton.addEventListener("click", function (event) {
@@ -89,13 +94,13 @@ void function playVideoIIFE() {
    * @param {*} videoElement
    */
   function updateProgressBar(event, videoElement) {
-    const percent =
-      (event.offsetX / event.currentTarget.offsetWidth) *
-      parseFloat(videoElement.duration);
-    videoElement.currentTime = percent;
+    const [curseOfElementDistance, elementWidth] = [event.offsetX, event.currentTarget.offsetWidth];
+    const videoTime = videoElement.duration;
+
+    videoElement.currentTime = (curseOfElementDistance  / elementWidth) * videoTime
   }
   progress.addEventListener("click", function (event) {
-    return updateProgressBar.call(this, event, video);
+    void updateProgressBar.call(this, event, video);
   });
 
 }();
