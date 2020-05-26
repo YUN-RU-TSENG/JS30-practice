@@ -1,18 +1,15 @@
 void function playVideoIIFE() {
 
-  // 註冊事件監聽元素
   const video = document.querySelector(".player .viewer");
   const toggle = document.querySelector(".player .toggle");
   const ranges = document.querySelectorAll(".player .player__slider");
   const progress = document.querySelector(".player .progress");
   const skipButtons = document.querySelectorAll(".player [data-skip]");
-  // 樣式更改元素
   const progressBar = document.querySelector(".player .progress__filled");
 
-
-
-
-  // play pause change
+  /**
+   * play pause change
+   */
   toggle.addEventListener("click", function (event) {
     void toggleVideo.call(this, event, video);
   });
@@ -21,12 +18,13 @@ void function playVideoIIFE() {
     videoElement.paused ? videoElement.play() : videoElement.pause();
   }
 
-
-  // play icon change
+  
+  /**
+   * play icon change
+   */
   video.addEventListener("pause", function (event) {
     void switchVideoIcon.call(this, event, toggle);
   });
-
   video.addEventListener("play", function (event) {
     void switchVideoIcon.call(this, event, toggle);
   });
@@ -36,8 +34,9 @@ void function playVideoIIFE() {
     toggleElement.textContent = icon;
   }
 
-
-  // play progressbar display change
+  /**
+   * play progressbar display change
+   */
   video.addEventListener("timeupdate", function (event) {
     void updateTimeDisplay.call(this, event, progressBar);
   });
@@ -49,7 +48,9 @@ void function playVideoIIFE() {
   }
 
 
-  // skip video time
+  /**
+   * skip video time
+   */
   skipButtons.forEach((skipButton) => {
     skipButton.addEventListener("click", function (event) {
       void skipVideo.call(this, event, video);
@@ -61,7 +62,9 @@ void function playVideoIIFE() {
   }
 
 
-  // update volume and speed time
+  /**
+   * update volume and speed time
+   */
   ranges.forEach((range) => {
     range.addEventListener("input", function (event) {
       void updateValue.call(this, event, video);
@@ -73,7 +76,9 @@ void function playVideoIIFE() {
   }
 
 
-  // scroll progress to change vide time
+  /**
+   * scroll progress to change vide time
+   */
   progress.addEventListener("click", function (event) {
     return updateProgressBar.call(this, event, video);
   });
