@@ -1,4 +1,4 @@
-void (function playVideoIIFE() {
+void function playVideoIIFE() {
 
   // 註冊事件監聽元素
   const video = document.querySelector(".player .viewer");
@@ -26,7 +26,7 @@ void (function playVideoIIFE() {
   video.addEventListener("pause", function (event) {
     void switchVideoIcon.call(this, event, toggle);
   });
-  
+
   video.addEventListener("play", function (event) {
     void switchVideoIcon.call(this, event, toggle);
   });
@@ -85,4 +85,4 @@ void (function playVideoIIFE() {
     videoElement.currentTime = percent;
   }
 
-})();
+}();
