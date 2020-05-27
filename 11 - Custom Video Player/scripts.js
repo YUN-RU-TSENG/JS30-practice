@@ -15,7 +15,7 @@
   function toggleVideo(event, videoElement) {
     videoElement.paused ? videoElement.play() : videoElement.pause()
   }
-  toggle.addEventListener('click', function callback(event) {
+  toggle.addEventListener('click', function (event) {
     void toggleVideo.call(this, event, video)
   })
 
@@ -31,10 +31,10 @@
 
     toggleElement.innerHTML = event.currentTarget.paused ? playIcon : pauseIcon
   }
-  video.addEventListener('pause', function callback(event) {
+  video.addEventListener('pause', function (event) {
     void switchVideoIcon.call(this, event, toggle)
   })
-  video.addEventListener('play', function callback(event) {
+  video.addEventListener('play', function (event) {
     void switchVideoIcon.call(this, event, toggle)
   })
 
@@ -50,7 +50,7 @@
 
     progressElement.style.flexBasis = `${(videoCurrentTime / videoTime) * 100}%`
   }
-  video.addEventListener('timeupdate', function callback(event) {
+  video.addEventListener('timeupdate', function (event) {
     void updateTimeDisplay.call(this, event, progressBar)
   })
 
@@ -66,7 +66,7 @@
     // videoElement.currentTime += Number(event.currentTarget.dataset.skip);
   }
   skipButtons.forEach((skipButton) => {
-    skipButton.addEventListener('click', function callback(event) {
+    skipButton.addEventListener('click', function (event) {
       void skipVideo.call(this, event, video)
     })
   })
@@ -81,7 +81,7 @@
     videoElement[event.currentTarget.name] = event.currentTarget.value
   }
   ranges.forEach((range) => {
-    range.addEventListener('input', function callback(event) {
+    range.addEventListener('input', function (event) {
       void updateValue.call(this, event, video)
     })
   })
@@ -98,7 +98,7 @@
 
     videoElement.currentTime = (curseOfElementDistance / elementWidth) * videoTime
   }
-  progress.addEventListener('click', function callback(event) {
+  progress.addEventListener('click', function (event) {
     void updateProgressBar.call(this, event, video)
   })
 }())
