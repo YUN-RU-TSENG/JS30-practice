@@ -1,18 +1,17 @@
-(() =>{
-
+(() => {
   const baseURL =
     "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
 
+  const searchInput = document.querySelector(".search");
+  const suggestions = document.querySelector(".suggestions");
   const cities = [];
   fetch(baseURL)
     .then((response) => response.json())
-    .then((data) => cities.push(...data))
-    .catch((err) => console.error(err))
-
-  const searchInput = document.querySelector(".search");
-  const suggestions = document.querySelector(".suggestions");
-
-  searchInput.addEventListener("input", displayKeyWord);
+    .then((data) => {
+      cities.push(...data);
+      searchInput.addEventListener("input", displayKeyWord);
+    })
+    .catch((err) => console.error(err));
 
   /**
    *
@@ -22,12 +21,14 @@
    * @param {*} places 輸入的數組
    * @return 過濾 font 後剩下的數組內容
    */
-  function filterWord(places, font){
-    return places.filter((place) => place.city.match(font) || place.state.match(font));
+  function filterWord(places, font) {
+    return places.filter(
+      (place) => place.city.match(font) || place.state.match(font)
+    );
   }
 
-  function formatNumber(number){
-    return Number(number).toLocaleString('zh-tw')
+  function formatNumber(number) {
+    return Number(number).toLocaleString("zh-tw");
   }
 
   /**
@@ -40,22 +41,29 @@
    */
   function displayKeyWord(e) {
     const keyWord = e.currentTarget.value;
-    !keyWord && location.reload();            // 每次不刪選時重新家載到最初頁面
+    !keyWord && location.reload(); // 每次不刪選時重新家載到最初頁面
 
-    const regexp = new RegExp(keyWord, 'gi');
+    const regexp = new RegExp(keyWord, "gi");
     const filterCities = filterWord(cities, regexp);
 
-    suggestions.innerHTML = filterCities.map((place) => {
-      const cityName = place.city.replace(regexp, `<span class="hl">${keyWord}</span>`)
-      const stateName = place.state.replace(regexp, `<span class="hl">${keyWord}</span>`)
+    suggestions.innerHTML = filterCities
+      .map((place) => {
+        const cityName = place.city.replace(
+          regexp,
+          `<span class="hl">${keyWord}</span>`
+        );
+        const stateName = place.state.replace(
+          regexp,
+          `<span class="hl">${keyWord}</span>`
+        );
 
-      return `
+        return `
       <li>
         <span class="name">${cityName}, ${stateName}</span>
         <span class="population">${formatNumber(place.population)}</span>
-      </li>`
-      //  <span class="population">${numeral(city.population).format(0,000)}</span> 使用 library 解決
-    }).join('');
+      </li>`;
+        //  <span class="population">${numeral(city.population).format(0,000)}</span> 使用 library 解決
+      })
+      .join("");
   }
-
 })();
