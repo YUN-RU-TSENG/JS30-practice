@@ -41,7 +41,7 @@
    */
   function displayKeyWord(e) {
     const keyWord = e.currentTarget.value;
-    !keyWord && location.reload(); // 每次不刪選時重新家載到最初頁面
+    !keyWord && location.reload(); // 每次不刪選時重新加載到最初頁面
 
     const regexp = new RegExp(keyWord, "gi");
     const filterCities = filterWord(cities, regexp);
