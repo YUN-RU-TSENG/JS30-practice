@@ -16,7 +16,7 @@
     videoElement.paused ? videoElement.play() : videoElement.pause()
   }
   toggle.addEventListener('click', function (event) {
-    void toggleVideo.call(this, event, video) // 寫 void 是過了
+    return void toggleVideo.call(this, event, video) // 寫 return void 是過了
   })
 
   /**
@@ -32,10 +32,10 @@
     toggleElement.innerHTML = event.currentTarget.paused ? playIcon : pauseIcon
   }
   video.addEventListener('pause', function (event) {
-    void switchVideoIcon.call(this, event, toggle) // 寫 void 是過了
+    return void switchVideoIcon.call(this, event, toggle) // 寫 return void 是過了
   })
   video.addEventListener('play', function (event) {
-    void switchVideoIcon.call(this, event, toggle) // 寫 void 是過了
+    return void switchVideoIcon.call(this, event, toggle) // 寫 return void 是過了
   })
 
   /**
@@ -51,7 +51,7 @@
     progressElement.style.flexBasis = `${(videoCurrentTime / videoTime) * 100}%`
   }
   video.addEventListener('timeupdate', function (event) {
-    void updateTimeDisplay.call(this, event, progressBar) // 寫 void 是過了
+    return void updateTimeDisplay.call(this, event, progressBar) // 寫 return void 是過了
   })
 
   /**
@@ -67,7 +67,7 @@
   }
   skipButtons.forEach((skipButton) => {
     skipButton.addEventListener('click', function (event) {
-      void skipVideo.call(this, event, video) // 寫 void 是過了
+      return void skipVideo.call(this, event, video) // 寫 return void 是過了
     })
   })
 
@@ -82,7 +82,7 @@
   }
   ranges.forEach((range) => {
     range.addEventListener('input', function (event) {
-      void updateValue.call(this, event, video) // 寫 void 是過了
+      return void updateValue.call(this, event, video) // 寫 return void 是過了
     })
   })
 
@@ -99,6 +99,6 @@
     videoElement.currentTime = (curseOfElementDistance / elementWidth) * videoTime
   }
   progress.addEventListener('click', function (event) {
-    void updateProgressBar.call(this, event, video) // 寫 void 是過了
+    return void updateProgressBar.call(this, event, video) // 寫 return void 是過了
   })
 }())
