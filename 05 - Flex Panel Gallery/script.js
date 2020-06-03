@@ -22,6 +22,8 @@
    * 添加、刪除第二種延遲視覺樣式，移動字體
    */
   function addClassSecond(e) {
+    const keyWordRegExp = /flex/gi
+    if(!keyWordRegExp.test(e.propertyName))
     e.currentTarget.classList.toggle("panel-changes");
   }
 
