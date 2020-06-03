@@ -18,6 +18,7 @@
   function setCurrentTime(){
     addTimeData();
     setTimeDisaply();
+    console.log(clockTime)
   }
 
   function setInitialTimeData() {
@@ -45,13 +46,14 @@
   }
 
   function timeToDegress(time, timeType) {
+    const displayDegTransform = 90;
     switch (timeType) {
       case "second":
-            return `rotate(${(time / 60) * 360}deg)`
+            return `rotate(${(time / 60) * 360 + displayDegTransform}deg)`
       case "minute":
-            return `rotate(${(time / 60) * 360}deg)`
+            return `rotate(${(time / 60) * 360 + displayDegTransform}deg)`
       case "hour":
-            return `rotate(${((time % 12) / 12) * 360}deg)`
+            return `rotate(${((time % 12) / 12) * 360 + displayDegTransform}deg)`
     }
   }
 
