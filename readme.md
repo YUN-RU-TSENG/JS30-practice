@@ -15,21 +15,21 @@ Grab the course at [https://JavaScript30.com](https://JavaScript30.com)
 
 ## 每題快速連結：
 
-以下為每個小練習的快速連結，可以查閱每個練習的成品，部分筆記會以 markdown 整理在其中，**若要查看原始碼請查閱以上 [https://github.com/YUN-RU-TSENG/JS30_practice](https://github.com/YUN-RU-TSENG/JS30_practice) 連結中的每題資料夾底下的 `script` 檔案。**
+以下為每個小練習的快速連結，可以查閱每個練習的成品，部分筆記會以 markdown 整理在其中，**若要查看原始碼請查閱以上 [https://github.com/YUN-RU-TSENG/JS30-practice](https://github.com/YUN-RU-TSENG/JS30-practice) 連結中的每題資料夾底下的 `script` 檔案。**
 
 部分練習作品包含新增、刪減、修改原始練習功能。
 
 ###### 👀 每題的 `script-FINISH.js` 為 **wesbos** 的範例碼。
 ###### 👀 筆者程式碼為 `script.js`
 
-| title 	| link 	| tag 	|
+| title 	| link 	| tag 	| note |
 |-	|-	|-	|
-| 01 - JavaScript Drum Kit 	| [JS01 - script](https://yun-ru-tseng.github.io/JS30_practice/01%20-%20JavaScript%20Drum%20Kit/index-START.html) 	| `audio` `data-* attribute` `addEventListener` `console.dir` 	|
-| 02 - JS and CSS Clock 	| [JS02 - script](https://yun-ru-tseng.github.io/JS30_practice/02%20-%20JS%20and%20CSS%20Clock/index-START.html) 	| `setTimeout` `setInterval` `date` 	|
-| 03 - CSS Variables 	| [JS03 - script](https://yun-ru-tseng.github.io/JS30_practice/03%20-%20CSS%20Variables/index-START.html) 	| `css root veriable` 	|
-| 05 - Flex Panel Gallery 	| [JS04 - script](https://yun-ru-tseng.github.io/JS30_practice/05%20-%20Flex%20Panel%20Gallery/index-START.html) 	| `flex` `this` `e.target` `e.currentTarget` 	|
-| 06 - Type Ahead 	| [JS06 - script](https://yun-ru-tseng.github.io/JS30_practice/06%20-%20Type%20Ahead/index-START.html) 	| `promise` `fetch`	|
-| 08 - Fun with HTML5 Canvas 	| [JS08 - script](https://yun-ru-tseng.github.io/JS30_practice/08%20-%20Fun%20with%20HTML5%20Canvas/index-START.html) 	|  `Canvas` 	|
-| 10 - Hold Shift and Check Checkboxes 	| [JS09 - script](https://yun-ru-tseng.github.io/JS30_practice/10%20-%20Hold%20Shift%20and%20Check%20Checkboxes/index-START.html) 	| `this` `Array method` 	|
-| 11 - Custom Video Player 	| [JS11 - script](https://yun-ru-tseng.github.io/JS30_practice/11%20-%20Custom%20Video%20Player/index.html) 	|  `video` `void` `call()`	|
+| 01 - JavaScript Drum Kit 	| [JS01 - script](https://yun-ru-tseng.github.io/JS30-practice/01%20-%20JavaScript%20Drum%20Kit/index-START.html) 	| `audio` `data-* attribute` `addEventListener` `console.dir` 	| |
+| 02 - JS and CSS Clock 	| [JS02 - script](https://yun-ru-tseng.github.io/JS30-practice/02%20-%20JS%20and%20CSS%20Clock/index-START.html) 	| `setTimeout` `setInterval` `date` 	| |
+| 03 - CSS Variables 	| [JS03 - script](https://yun-ru-tseng.github.io/JS30-practice/03%20-%20CSS%20Variables/index-START.html) 	| `css root veriable` 	| |
+| 05 - Flex Panel Gallery 	| [JS04 - script](https://yun-ru-tseng.github.io/JS30-practice/05%20-%20Flex%20Panel%20Gallery/index-START.html) 	| `flex` `this` `e.target` `e.currentTarget` 	| |
+| 06 - Type Ahead 	| [JS06 - script](https://yun-ru-tseng.github.io/JS30-practice/06%20-%20Type%20Ahead/index-START.html) 	| `promise` `fetch`	| |
+| 08 - Fun with HTML5 Canvas 	| [JS08 - script](https://yun-ru-tseng.github.io/JS30-practice/08%20-%20Fun%20with%20HTML5%20Canvas/index-START.html) 	|  `Canvas` 	| |
+| 10 - Hold Shift and Check Checkboxes 	| [JS09 - script](https://yun-ru-tseng.github.io/JS30-practice/10%20-%20Hold%20Shift%20and%20Check%20Checkboxes/index-START.html) 	| `this` `Array method` 	| |
+| 11 - Custom Video Player 	| [JS11 - script](https://yun-ru-tseng.github.io/JS30-practice/11%20-%20Custom%20Video%20Player/index.html) 	|  `video` `void` `call()`	| |
 
