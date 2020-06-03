@@ -23,7 +23,7 @@ Grab the course at [https://JavaScript30.com](https://JavaScript30.com)
 ###### 👀 筆者程式碼為 `script.js`
 
 | title 	| link 	| tag 	| note |
-|-	|-	|-	|
+|-	|-	|-	|- |
 | 01 - JavaScript Drum Kit 	| [JS01 - script](https://yun-ru-tseng.github.io/JS30-practice/01%20-%20JavaScript%20Drum%20Kit/index-START.html) 	| `audio` `data-* attribute` `addEventListener` `console.dir` 	| |
 | 02 - JS and CSS Clock 	| [JS02 - script](https://yun-ru-tseng.github.io/JS30-practice/02%20-%20JS%20and%20CSS%20Clock/index-START.html) 	| `setTimeout` `setInterval` `date` 	| |
 | 03 - CSS Variables 	| [JS03 - script](https://yun-ru-tseng.github.io/JS30-practice/03%20-%20CSS%20Variables/index-START.html) 	| `css root veriable` 	| |
