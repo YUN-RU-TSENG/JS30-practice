@@ -6,7 +6,7 @@
 
   // select checkbox when keydow shift
   items.forEach((element, index) => element.addEventListener("click", function(e){
-    return setCheckInput.call(this, e, index)
+    return void setCheckInput.call(this, e, index)
     // return setCheckInput.apply(this, [e, index])
   }));
 
@@ -18,8 +18,8 @@
   /**
    * 當按下 shift 案件時，可以複選之前到現在的 checkbox 按鈕
    *
-   * @param {*} e
-   * @param {*} index
+   * @param {event} e
+   * @param {Number} index
    */
   function setCheckInput(e, index) {
 
