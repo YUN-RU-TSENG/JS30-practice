@@ -23,7 +23,7 @@
    */
   function addClassSecond(e) {
     const keyWordRegExp = /flex/gi
-    if(!keyWordRegExp.test(e.propertyName))
+    if(!keyWordRegExp.test(e.propertyName)) return
     e.currentTarget.classList.toggle("panel-changes");
   }
 
