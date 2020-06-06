@@ -1,4 +1,9 @@
+/**
+ * 此頁面乃為新增頁面元素功能，可以新增 TODO 以及完成狀態。
+ */
+
 void (function todolistDisplayIIFE() {
+
   const inputItems = document.querySelector(".add-items"); // form 文字輸入
   const itemsList = document.querySelector(".plates"); // ul 項目列表
   const items = JSON.parse(localStorage.getItem("items")) || [];
@@ -53,14 +58,13 @@ void (function todolistDisplayIIFE() {
 
   // 當 li 發生點擊時觸發，此為事件委派
   itemsList.addEventListener("click", toggleDone);
-
   /**
    * @brief 儲存 item 的狀態到 localStorage 中，注意此處的事件註冊在外層，為事件委派
    *
    * @param {event} 事件物件
    */
   function storeToggleDone(e) {
-    if (!e.target.tagName.match(/input/gi)) return;
+    if (!e.target.tagName.match(/input/gi)) return; // 由於是事件委派，故需要排除非目標元素
 
     const index = e.target.dataset.index;
     items[index].isFinish = !items[index].isFinish;
