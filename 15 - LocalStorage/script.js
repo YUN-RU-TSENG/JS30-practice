@@ -64,7 +64,8 @@ void function todolistDisplayIIFE() {
    * @param {event} 事件物件
    */
   function storeToggleDone(e) {
-    if (!e.target.tagName.match(/input/gi)) return; // 由於是事件委派，故需要排除非目標元素
+    const regxp = /input/gi
+    if (!e.target.tagName.match(regxp)) return; // 由於是事件委派，故需要排除非目標元素
 
     const index = e.target.dataset.index;
     items[index].isFinish = !items[index].isFinish;
