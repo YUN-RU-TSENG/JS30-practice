@@ -2,7 +2,7 @@
  * 此頁面乃為新增頁面元素功能，可以新增 TODO 以及完成狀態。
  */
 
-void (function todolistDisplayIIFE() {
+void function todolistDisplayIIFE() {
 
   const inputItems = document.querySelector(".add-items"); // form 文字輸入
   const itemsList = document.querySelector(".plates"); // ul 項目列表
@@ -74,4 +74,4 @@ void (function todolistDisplayIIFE() {
     displayItem(items, itemsList);
   }
 
-})();
+}();
