@@ -23,7 +23,7 @@ void function todolistDisplayIIFE() {
     const text = e.currentTarget.querySelector('[name="item"]').value;
     const item = {
       isFinish: false,
-      text,
+      text
     };
 
     items.push(item);
@@ -57,7 +57,7 @@ void function todolistDisplayIIFE() {
   }
 
   // 當 li 發生點擊時觸發，此為事件委派
-  itemsList.addEventListener("click", toggleDone);
+  itemsList.addEventListener("click", storeToggleDone);
 
   /**
    * @brief 儲存 item 的狀態到 localStorage 中，注意此處的事件註冊在外層，為事件委派
