@@ -5,7 +5,7 @@
 void function IIFE(){
   const holes = document.querySelectorAll(".hole");
   const scoreBoard = document.querySelector(".score");
-  const moles = document.querySelectorAll(".mole");
+  const bactria = document.querySelectorAll(".mole");
   const stratButton = document.querySelector('#start');
   const timeShow = document.querySelector('#time');
   let lastHole;
@@ -38,7 +38,7 @@ void function IIFE(){
         timeShow.textContent = `${totalTime}s`;
         stratButton.textContent = 'start'
         stratButton.disabled = false
-        moles.forEach(mole => mole.parentNode.classList.remove('up'))
+        bactria.forEach(mole => mole.parentNode.classList.remove('up'))
 
         clearInterval(interval)
       }
@@ -83,8 +83,7 @@ void function IIFE(){
     return hole;
   }
 
-
-  moles.forEach( mole => mole.addEventListener('click', addScore))
+  bactria.forEach( mole => mole.addEventListener('click', addScore))
   /**
    * @brief 添加分數
    * @param {event} 事件物件
