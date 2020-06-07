@@ -58,14 +58,15 @@ void function todolistDisplayIIFE() {
 
   // 當 li 發生點擊時觸發，此為事件委派
   itemsList.addEventListener("click", toggleDone);
+
   /**
    * @brief 儲存 item 的狀態到 localStorage 中，注意此處的事件註冊在外層，為事件委派
    *
    * @param {event} 事件物件
    */
   function storeToggleDone(e) {
-    const regxp = /input/gi
-    if (!e.target.tagName.match(regxp)) return; // 由於是事件委派，故需要排除非目標元素
+    const regExp = /input/gi
+    if (!regExp.test(e.target.tagName)) return; // 由於是事件委派，故需要排除非目標元素
 
     const index = e.target.dataset.index;
     items[index].isFinish = !items[index].isFinish;
