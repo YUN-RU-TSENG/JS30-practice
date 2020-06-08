@@ -62,7 +62,7 @@ h2{
 
 .hole:after {
   display: block;
-  background: url(dirt-new.svg) bottom center no-repeat;
+  background: url('img/dirt-new.svg') bottom center no-repeat;
   background-size: contain;
   content: '';
   width: 100%;
@@ -73,7 +73,7 @@ h2{
 }
 
 .mole {
-  background: url('bactria.svg') bottom center no-repeat;
+  background: url('img/bactria.svg') bottom center no-repeat;
   background-size: 60%;
   position: absolute;
   top: 100%;
