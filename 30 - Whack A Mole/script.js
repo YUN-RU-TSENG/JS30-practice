@@ -53,9 +53,9 @@ void function IIFE(){
     const time = randomNumber(200, 1000);
     randomHole().classList.add('up')
 
-    setTimeout(()=>{
+    var timeOut = setTimeout(()=>{
       hole.classList.remove('up')
-      start && appearHole()
+      start ? appearHole() : clearTimeout(timeOut)
     }, time)
   }
 

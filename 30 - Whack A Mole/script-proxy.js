@@ -8,10 +8,8 @@ void function IIFE(){
   const scoreBoard = document.querySelector(".score");
   const bactria = Array.from(document.querySelectorAll(".mole"))
   const startButton = document.querySelector('#start');
-  const timeShow = document.querySelector('#time');
   let score = 0;
   let timeToggle = false;
-  let totalTime = 60;
 
   const moleData = bactria.reduce((pre, next, index)=>{
     pre[index] = false
