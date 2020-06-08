@@ -33,4 +33,4 @@ Grab the course at [https://JavaScript30.com](https://JavaScript30.com)
 | 10 - Hold Shift and Check Checkboxes 	| [JS09 - script](https://yun-ru-tseng.github.io/JS30-practice/10%20-%20Hold%20Shift%20and%20Check%20Checkboxes/index-START.html) 	| `this` `Array method` 	| |
 | 11 - Custom Video Player 	| [JS11 - script](https://yun-ru-tseng.github.io/JS30-practice/11%20-%20Custom%20Video%20Player/index.html) 	|  `video` `void` `call()`	| |
 | 15 - localStorage 	| [JS15 - script](https://yun-ru-tseng.github.io/JS30-practice/15%20-%20LocalStorage/index-START.html) 	|  `localStorafe` `事件委派`	| [notion](https://www.notion.so/JS15-localStorage-a0910367c5234137895f8b75ca96a386) |
-| 30 - Whack A Mole 	| [JS30 - script](https://yun-ru-tseng.github.io/JS30-practice/30%20-%20Whack%20A%20Mole/index-START.html) 	|  `proxy` `setTimeOut`	| |
+| 30 - Whack A Mole 	| [JS30 - script](https://yun-ru-tseng.github.io/JS30-practice/30%20-%20Whack%20A%20Mole/index-START.html) 	|  `proxy` `setTimeOut`	| [notion](https://www.notion.so/JS30-30-Whack-A-Mole-058973b538c44cfa835b89ef94dd5b5c) |
