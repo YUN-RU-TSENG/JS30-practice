@@ -48,8 +48,9 @@
     </svg>
 
     <h1 class="speed">
-      <span class="speed-value">0</span>
-      <span class="units">KM/H</span>
+      <span>經度：</span><span class="speed-value">0</span>
+      <span>........</span>
+      <span>緯度：</span><span class="units">0</span>
     </h1>
 
     <style>
@@ -90,26 +91,11 @@
         align-items: center;
       }
 
-      .units {
+      span {
         font-size: 15px;
       }
       /*Compass: https://thenounproject.com/search/?q=compass&i=592352*/
     </style>
-    <script>
-      const arrow = document.querySelector(".arrow");
-      const speed = document.querySelector(".speed-value");
-
-      navigator.geolocation.watchPosition(setLocation, setLocationFail);
-
-      function setLocation(data) {
-        console.log("data", data);
-        speed.textContent = data.coords.speed || 0;
-        arrow.style.transform = `rotate(${data.coords.heading || 25}deg)`;
-      }
-
-      function setLocationFail(err) {
-        console.log(err);
-      }
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
