@@ -7,12 +7,20 @@ void function IIFE() {
   // 當位置改變時，重新加載
   navigator.geolocation.watchPosition(setLocation, setLocationFail);
 
+  /**
+   * @brief 當取得位置資訊，執行打印畫面經緯度
+   * @param {GeolocationCoordinates } 位置資訊
+   */
   function setLocation(data) {
     console.log(data.coords)
     speed.textContent = data.coords.latitude;
     units.textContent = data.coords.longitude;
   }
 
+  /**
+   * @brief 當取得位置資訊產生問題時，執行此函數透過 alert 告知使用者。
+   * @param {GeolocationPositionError} 無法取得時產生的錯誤資訊物件
+   */
   function setLocationFail(err) {
     switch (err.code) {
       case 1:
