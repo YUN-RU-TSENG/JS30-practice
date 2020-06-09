@@ -1,6 +1,6 @@
 void function IIFE() {
   if(!navigator.geolocation) return;
-  // 當位置改變時，重新加載
+  // 當位置改變時，重新加載 callback
   navigator.geolocation.watchPosition(setLocation, setLocationFail);
 
   /**
@@ -10,7 +10,7 @@ void function IIFE() {
   function setLocation(data) {
     const speed = document.querySelector(".speed-value");
     const units = document.querySelector(".units");
-    
+
     speed.textContent = data.coords.latitude;
     units.textContent = data.coords.longitude;
   }
