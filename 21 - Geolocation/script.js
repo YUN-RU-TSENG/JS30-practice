@@ -1,9 +1,5 @@
 void function IIFE() {
-  const speed = document.querySelector(".speed-value");
-  const units = document.querySelector(".units");
-
   if(!navigator.geolocation) return;
-
   // 當位置改變時，重新加載
   navigator.geolocation.watchPosition(setLocation, setLocationFail);
 
@@ -12,7 +8,9 @@ void function IIFE() {
    * @param {GeolocationCoordinates } 位置資訊
    */
   function setLocation(data) {
-    console.log(data.coords)
+    const speed = document.querySelector(".speed-value");
+    const units = document.querySelector(".units");
+    
     speed.textContent = data.coords.latitude;
     units.textContent = data.coords.longitude;
   }
