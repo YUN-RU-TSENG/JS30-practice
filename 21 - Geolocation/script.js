@@ -5,7 +5,7 @@ void function IIFE() {
 
   /**
    * @brief 當取得位置資訊，執行打印畫面經緯度
-   * @param {GeolocationCoordinates } 位置資訊
+   * @param {GeolocationCoordinates} 位置資訊
    */
   function setLocation(data) {
     const speed = document.querySelector(".speed-value");
