@@ -4,8 +4,8 @@
 
 void function IIFE(){
   let   lastHole,
-        countScore = 0;
-        start = false;
+        countScore = 0,
+        start = false,
         totalTime = 60;
 
   const holes = document.querySelectorAll(".hole"),
@@ -36,11 +36,11 @@ void function IIFE(){
       if(totalTime === 0) {
         start = false;
         timeShow.textContent = `${totalTime}s`;
-        stratButton.textContent = 'start'
-        stratButton.disabled = false
-        bactria.forEach(mole => mole.parentNode.classList.remove('up'))
+        stratButton.textContent = 'start';
+        stratButton.disabled = false;
+        bactria.forEach(mole => mole.parentNode.classList.remove('up'));
 
-        clearInterval(interval)
+        clearInterval(interval);
       }
     }, 1000)
   }
