@@ -3,13 +3,12 @@
  */
 
 void function IIFE(){
-
-  const holes = document.querySelectorAll(".hole");
-  const scoreBoard = document.querySelector(".score");
-  const bactria = Array.from(document.querySelectorAll(".mole"))
-  const startButton = document.querySelector('#start');
-  let score = 0;
-  let timeToggle = false;
+  let   score = 0;
+        timeToggle = false;
+  const holes = document.querySelectorAll(".hole"),
+        scoreBoard = document.querySelector(".score"),
+        bactria = Array.from(document.querySelectorAll(".mole")),
+        startButton = document.querySelector('#start');
 
   const moleData = bactria.reduce((pre, next, index)=>{
     pre[index] = false
@@ -56,9 +55,11 @@ void function IIFE(){
   function setHole(randomeHole, randomTime){
     if(!timeToggle) return;
     proxyMoleData[randomeHole] = true;
+
     setTimeout(()=>{
       appearHole();
     }, randomTime)
+
     setTimeout(()=>{
       proxyMoleData[randomeHole] && (proxyMoleData[randomeHole] = false)
     }, randomTime)
