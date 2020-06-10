@@ -5,8 +5,8 @@
 
 
   function playMusicAndAddClass(event) {
-    const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
-    const button = document.querySelector(`div[data-key="${event.keyCode}"]`);
+    const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`),
+          button = document.querySelector(`div[data-key="${event.keyCode}"]`);
     audio && playMusic(audio);
     button && addClass(button);
   }
@@ -21,8 +21,8 @@
   }
 
   function removeClassAndStopMusic(event) {
-    const button = document.querySelector(`div[data-key="${event.keyCode}"]`);
-    const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+    const button = document.querySelector(`div[data-key="${event.keyCode}"]`),
+          audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
     audio && stopMusic(audio);
     button && removeClass(button);
   }
