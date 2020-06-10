@@ -1,6 +1,6 @@
 (() => {
   const canvas = document.querySelector("canvas");
-  const canvasContext = canvas.getContext("2d");
+        canvasContext = canvas.getContext("2d");
 
   setCanvas(canvas.parentElement.clientWidth, 700, "square", 0);
 
@@ -15,7 +15,6 @@
 
   /**
    * 設置基礎 canvas 細節
-   *
    * @param {*} width
    * @param {*} height
    * @param {*} lineCap
@@ -28,7 +27,6 @@
 
   /**
    * 繪製畫布
-   *
    * @param {*} e
    */
   function drawInCanvas(e) {
