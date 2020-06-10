@@ -4,24 +4,22 @@
 
 void function todolistDisplayIIFE() {
 
-  const inputItems = document.querySelector(".add-items"); // form 文字輸入
-  const itemsList = document.querySelector(".plates"); // ul 項目列表
-  const items = JSON.parse(localStorage.getItem("items")) || [];
+  const inputItems = document.querySelector(".add-items"), // form 文字輸入
+        itemsList = document.querySelector(".plates"), // ul 項目列表
+        items = JSON.parse(localStorage.getItem("items")) || [];
 
   // 先打印存取在本地端的資料到畫面中
   displayItem(items, itemsList);
-  // 一旦發生表單 submit，添加元素到畫面中
   inputItems.addEventListener("submit", addItem);
 
   /**
-   * @brief 新增項目、儲存項目到 localStorage。ps，將資料列印到畫面的部分由 displayItem() 實現
-   *
-   * @param {event} 事件物件
+   * 新增項目、儲存項目到 localStorage。ps，將資料列印到畫面的部分由 displayItem() 實現
+   * @param {*} 事件物件
    */
   function addItem(e) {
     e.preventDefault();
-    const text = e.currentTarget.querySelector('[name="item"]').value;
-    const item = {
+    const text = e.currentTarget.querySelector('[name="item"]').value,
+          item = {
       isFinish: false,
       text
     };
@@ -36,10 +34,9 @@ void function todolistDisplayIIFE() {
   }
 
   /**
-   * @brief 打印 data 陣列的內容到 displayParentElement 元素內
-   *
-   * @param {Array} data 將打印的陣列資料
-   * @param {HTMLULElement} displayParentElement 打印資料的 ul 元素
+   * 打印 data 陣列的內容到 displayParentElement 元素內
+   * @param {*} data 將打印的陣列資料
+   * @param {*} displayParentElement 打印資料的 ul 元素
    */
   function displayItem(data, displayParentElement) {
     displayParentElement.innerHTML = data
@@ -60,9 +57,8 @@ void function todolistDisplayIIFE() {
   itemsList.addEventListener("click", storeToggleDone);
 
   /**
-   * @brief 儲存 item 的狀態到 localStorage 中，注意此處的事件註冊在外層，為事件委派
-   *
-   * @param {event} 事件物件
+   * 儲存 item 的狀態到 localStorage 中，注意此處的事件註冊在外層，為事件委派
+   * @param {*} 事件物件
    */
   function storeToggleDone(e) {
     const regExp = /input/gi
