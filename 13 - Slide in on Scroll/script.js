@@ -34,6 +34,7 @@ void function IIFE() {
    */
   function debounce(functionCallback, waitingTime = 30) {
     let timeout;
+    if(typeof functionCallback !== 'function' || typeof waitingTime !== 'number') return;
     return function () {
       const arg = arguments,
             constext = this;
