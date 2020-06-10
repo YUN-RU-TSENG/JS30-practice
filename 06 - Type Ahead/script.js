@@ -2,9 +2,10 @@
   const baseURL =
     "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
 
-  const searchInput = document.querySelector(".search");
-  const suggestions = document.querySelector(".suggestions");
-  const cities = [];
+  const searchInput = document.querySelector(".search"),
+        suggestions = document.querySelector(".suggestions"),
+        cities = [];
+        
   fetch(baseURL)
     .then((response) => response.json())
     .then((data) => {
@@ -15,8 +16,7 @@
 
   /**
    *
-   * @brief 這是一組篩選符合輸入文字的 filter function
-   *
+   * 這是一組篩選符合輸入文字的 filter function
    * @param {*} font 過濾的文字
    * @param {*} places 輸入的數組
    * @return 過濾 font 後剩下的數組內容
@@ -33,18 +33,15 @@
 
   /**
    *
-   * @brief 將篩選好的數組資料列印出來
-   * 該函數將會將篩選好的陣列內容列印到畫面上
-   *
+   * 將篩選好的數組資料列印出來，該函數將會將篩選好的陣列內容列印到畫面上
    * @param {*} e 事件
-   * @return undefined
    */
   function displayKeyWord(e) {
     const keyWord = e.currentTarget.value;
     !keyWord && location.reload(); // 每次不刪選時重新加載到最初頁面
 
-    const regexp = new RegExp(keyWord, "gi");
-    const filterCities = filterWord(cities, regexp);
+    const regexp = new RegExp(keyWord, "gi"),
+          filterCities = filterWord(cities, regexp);
 
     suggestions.innerHTML = filterCities
       .map((place) => {
