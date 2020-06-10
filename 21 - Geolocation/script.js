@@ -4,20 +4,19 @@ void function IIFE() {
   navigator.geolocation.watchPosition(setLocation, setLocationFail);
 
   /**
-   * @brief 當取得位置資訊，執行打印畫面經緯度
-   * @param {GeolocationCoordinates} 位置資訊
+   * 當取得位置資訊，執行打印畫面經緯度
+   * @param {*} 位置資訊
    */
   function setLocation(data) {
-    const speed = document.querySelector(".speed-value");
-    const units = document.querySelector(".units");
-
+    const speed = document.querySelector(".speed-value"),
+          units = document.querySelector(".units");
     speed.textContent = data.coords.latitude;
     units.textContent = data.coords.longitude;
   }
 
   /**
-   * @brief 當取得位置資訊產生問題時，執行此函數透過 alert 告知使用者。
-   * @param {GeolocationPositionError} 無法取得時產生的錯誤資訊物件
+   * 當取得位置資訊產生問題時，執行此函數透過 alert 告知使用者。
+   * @param {*} 無法取得時產生的錯誤資訊物件
    */
   function setLocationFail(err) {
     switch (err.code) {
