@@ -28,7 +28,7 @@ void function IIFE() {
   }
 
   /**
-   * @brief 由於 scroll 事件監聽會造成過多的效能耗費，所以使用了 debounce。
+   * 由於 scroll 事件監聽會造成過多的效能耗費，所以使用了 debounce。
    * @param {function} functionCallback debounce 執行的函式
    * @param {Number} waitingTime debounce 時間
    */
