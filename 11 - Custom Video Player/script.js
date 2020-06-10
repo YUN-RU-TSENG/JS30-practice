@@ -1,16 +1,16 @@
 (function playVideoIIFE() {
-  const video = document.querySelector('.player .viewer')
-  const toggle = document.querySelector('.player .toggle')
-  const ranges = document.querySelectorAll('.player .player__slider')
-  const progress = document.querySelector('.player .progress')
-  const skipButtons = document.querySelectorAll('.player [data-skip]')
-  const progressBar = document.querySelector('.player .progress__filled')
+  
+  const video = document.querySelector('.player .viewer'),
+        toggle = document.querySelector('.player .toggle')
+        ranges = document.querySelectorAll('.player .player__slider'),
+        progress = document.querySelector('.player .progress'),
+        skipButtons = document.querySelectorAll('.player [data-skip]'),
+        progressBar = document.querySelector('.player .progress__filled');
 
   /**
    * play pause change
-   *
-   * @param {Object} event
-   * @param {Object} videoElement
+   * @param {*} event
+   * @param {*} videoElement
    */
   function toggleVideo(event, videoElement) {
     return videoElement.paused ? videoElement.play() : videoElement.pause()
@@ -21,13 +21,12 @@
 
   /**
    * play icon change
-   *
-   * @param {Object} event
-   * @param {Object} toggleElement
+   * @param {*} event
+   * @param {*} toggleElement
    */
   function switchVideoIcon(event, toggleElement) {
-    const pauseIcon = '<span>&#10074;&#10074;<span>'
-    const playIcon = '<span>&#9658;<span>'
+    const pauseIcon = '<span>&#10074;&#10074;<span>',
+          playIcon = '<span>&#9658;<span>';
 
     toggleElement.innerHTML = event.currentTarget.paused ? playIcon : pauseIcon
   }
@@ -40,13 +39,12 @@
 
   /**
    * updateTimeDisplay
-   *
-   * @param {Object} event
-   * @param {Object} progressElement
+   * @param {*} event
+   * @param {*} progressElement
    */
   function updateTimeDisplay(event, progressElement) {
-    const videoCurrentTime = event.currentTarget.currentTime
-    const videoTime = event.currentTarget.duration
+    const videoCurrentTime = event.currentTarget.currentTime,
+          videoTime = event.currentTarget.duration;
 
     progressElement.style.flexBasis = `${(videoCurrentTime / videoTime) * 100}%`
   }
@@ -56,9 +54,8 @@
 
   /**
    * skip video time
-   *
-   * @param {Object} event
-   * @param {Object} videoElement
+   * @param {*} event
+   * @param {*} videoElement
    */
   function skipVideo(event, videoElement) {
     videoElement.currentTime += parseFloat(event.currentTarget.dataset.skip)
@@ -73,9 +70,8 @@
 
   /**
    * update volume and speed time
-   *
-   * @param {Object} event
-   * @param {Object} videoElement
+   * @param {*} event
+   * @param {*} videoElement
    */
   function updateValue(event, videoElement) {
     videoElement[event.currentTarget.name] = event.currentTarget.value
@@ -88,13 +84,12 @@
 
   /**
    * scroll progress to change vide time
-   *
-   * @param {Object} event
-   * @param {Object} videoElement
+   * @param {*} event
+   * @param {*} videoElement
    */
   function updateProgressBar(event, videoElement) {
-    const [curseOfElementDistance, elementWidth] = [event.offsetX, event.currentTarget.offsetWidth]
-    const videoTime = videoElement.duration
+    const [curseOfElementDistance, elementWidth] = [event.offsetX, event.currentTarget.offsetWidth],
+          videoTime = videoElement.duration
 
     videoElement.currentTime = (curseOfElementDistance / elementWidth) * videoTime
   }
