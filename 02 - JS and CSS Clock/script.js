@@ -18,7 +18,6 @@
   function setCurrentTime(){
     addTimeData();
     setTimeDisaply();
-    console.log(clockTime)
   }
 
   function setInitialTimeData() {
@@ -30,9 +29,9 @@
   }
 
   function setTimeDisaply(){
-    const hourHand = document.querySelector(".hour-hand");
-    const minHand = document.querySelector(".min-hand");
-    const secondHand = document.querySelector(".second-hand");
+    const hourHand = document.querySelector(".hour-hand"),
+          minHand = document.querySelector(".min-hand"),
+          secondHand = document.querySelector(".second-hand");
 
     secondHand.style.transform = timeToDegress(clockTime.second, "second");
     minHand.style.transform = timeToDegress(clockTime.minute, "minute");
