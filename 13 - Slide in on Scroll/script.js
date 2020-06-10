@@ -39,12 +39,12 @@ void function IIFE() {
             constext = this;
       let later = function () {
         timeout = null;
-        if(!immediate) functionCallback.call(this, ...arg);
+        if(!immediate) functionCallback.call(constext, ...arg);
       };
       let callNow = immediate && !timeout;
       clearTimeout(timeout);
       timeout = setTimeout(later, waitingTime);
-      callNow && functionCallback.call(this, ...arg);
+      callNow && functionCallback.call(constext, ...arg);
     };
   }
 }();
