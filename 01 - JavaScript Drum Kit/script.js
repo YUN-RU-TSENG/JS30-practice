@@ -1,8 +1,5 @@
 (() => {
-  // debugger();
 
-  var keys = document.querySelectorAll(".key");
-  // fun name(){} 編譯時期就已經存了，所以 document 可以放上面！
   document.body.addEventListener("keyup", removeClassAndStopMusic);
   document.body.addEventListener("keydown", playMusicAndAddClass); // 他就是從 body 開始回傳
 
@@ -12,7 +9,6 @@
     const button = document.querySelector(`div[data-key="${event.keyCode}"]`);
     audio && playMusic(audio);
     button && addClass(button);
-    // 也有 if return 寫法，目前使用此的原因是確保兩者都存在，但是 if 可以確保邏輯統一，都用 audio 判斷
   }
 
   function playMusic(audioElement) {
