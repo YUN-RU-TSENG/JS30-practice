@@ -3,22 +3,22 @@
  */
 
 void function IIFE(){
-  const holes = document.querySelectorAll(".hole");
-  const scoreBoard = document.querySelector(".score");
-  const bactria = document.querySelectorAll(".mole");
-  const stratButton = document.querySelector('#start');
-  const timeShow = document.querySelector('#time');
-  let lastHole;
-  let countScore = 0;
-  let start = false;
-  let totalTime = 60;
+  let   lastHole,
+        countScore = 0;
+        start = false;
+        totalTime = 60;
+
+  const holes = document.querySelectorAll(".hole"),
+        scoreBoard = document.querySelector(".score"),
+        bactria = document.querySelectorAll(".mole"),
+        stratButton = document.querySelector('#start'),
+        timeShow = document.querySelector('#time');
 
   stratButton.addEventListener('click', startGame)
 
   /**
-   * @brief 開始遊戲，初始化數值
-   *
-   * @param {event} e 事件物件
+   * 開始遊戲，初始化數值
+   * @param {*} e 事件物件
    */
   function startGame(e){
     countScore = 0;
@@ -28,8 +28,8 @@ void function IIFE(){
     stratButton.textContent = 'running'
     stratButton.disabled = true
     scoreBoard.textContent = countScore;
-    appearHole();
 
+    appearHole();
     let interval = setInterval(()=>{
       totalTime -= 1
       timeShow.textContent = `${totalTime}s`;
@@ -46,13 +46,13 @@ void function IIFE(){
   }
 
   /**
-   * @brief 設定細菌出現，隨機和任意一隻細菌
+   * 設定細菌出現，隨機和任意一隻細菌
    */
   function appearHole(){
-    const hole = randomHole();
-    const time = randomNumber(200, 1000);
-    randomHole().classList.add('up')
+    const hole = randomHole(),
+          time = randomNumber(1000, 500);
 
+    randomHole().classList.add('up');
     var timeOut = setTimeout(()=>{
       hole.classList.remove('up')
       start ? appearHole() : clearTimeout(timeOut)
@@ -60,12 +60,12 @@ void function IIFE(){
   }
 
   /**
-   * @brief 返回 Max Min 之間的任意數字
-   *
-   * @param {Numbet} Max
+   * 返回 Max Min 之間的任意數字
+   * @param {Number} Max
    * @param {Number} Min
    */
   function randomNumber(Max, Min){
+    if(typeof Max !== "number" || typeof Min !== "number") return;
     return Math.round(Math.random() * (Max - Min) + Min)
   }
 
@@ -73,20 +73,17 @@ void function IIFE(){
    * 返回隨意的細菌元素
    */
   function randomHole(){
-    const randomIndex =  Math.floor(Math.random() * holes.length)
-    const hole = holes[randomIndex]
-    if(hole === lastHole){
-      console.warn("Oops, some wrong, auto reload new hole.")
-      randomHole()
-    }
+    const randomIndex =  Math.floor(Math.random() * holes.length),
+          hole = holes[randomIndex];
+    if(hole === lastHole) return randomHole()
     lastHole = hole;
     return hole;
   }
 
   bactria.forEach( mole => mole.addEventListener('click', addScore))
   /**
-   * @brief 添加分數
-   * @param {event} 事件物件
+   * 添加分數
+   * @param {*} event 事件物件
    */
   function addScore(e){
     if(!e.isTrusted) return;
