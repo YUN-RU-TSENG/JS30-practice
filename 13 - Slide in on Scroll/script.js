@@ -33,18 +33,18 @@ void function IIFE() {
    * @param {Number} waitingTime debounce 時間
    */
   function debounce(functionCallback, waitingTime = 30) {
-    // 設置 dobunce 是否結束，初始值為 undefined，當第一次 setTimeout 執行後，會產生數字，所以 callNow 在第一次執行 callback 後便會由於 setTimeOut 一直新增，回傳數字而一直為 Number 所以 callNow 會是 !Number 便會是 false。
-    // 直到第一次 debounce 函數 setTimeout 執行 later 後，才會再變成 !Null，才可以在執行一次，依此循環。
     let timeout;
     return function () {
+      const arg = arguments,
+            constext = this;
       let later = function () {
         timeout = null;
+        if(!immediate) functionCallback.call(this, ...arg);
       };
-      // 現在是否是可以執行的時間點
       let callNow = immediate && !timeout;
-      // clearTimeout(timeout); 目前實行起來作用不太確定，好像沒有清除？
+      clearTimeout(timeout);
       timeout = setTimeout(later, waitingTime);
-      callNow && functionCallback();
+      callNow && functionCallback.call(this, ...arg);
     };
   }
 }();

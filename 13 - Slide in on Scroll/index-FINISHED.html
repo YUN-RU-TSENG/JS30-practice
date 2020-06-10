@@ -44,18 +44,18 @@
 
   <script>
 
-    function debounce(func, wait = 10, immediate = true) {
+    function debounce(func, wait = 1000, immediate = true) {
       var timeout;
       return function() {
         // var context = this;
         var later = function() {
           timeout = null;
-          // if (!immediate) func.apply(context, null);
+          if (!immediate) func.apply(context, null);
         };
         var callNow = immediate && !timeout;
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
-        if (callNow) func();
+        if (callNow) func.apply(context, null);
       };
     };
 
