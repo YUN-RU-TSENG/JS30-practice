@@ -1,8 +1,13 @@
 (() => {
   const canvas = document.querySelector("canvas");
-        canvasContext = canvas.getContext("2d");
+  canvasContext = canvas.getContext("2d");
 
-  setCanvas(canvas.parentElement.clientWidth, 700, "square", 0);
+  setCanvas({
+    width: canvas.parentElement.clientWidth,
+    height: 700,
+    lineCap: "square",
+    lineWidth: 0,
+  });
 
   canvas.addEventListener("mousemove", drawInCanvas);
   canvas.addEventListener("mousedown", openDraw);
@@ -20,9 +25,11 @@
    * @param {*} lineCap
    * @param {*} lineWidth
    */
-  function setCanvas(width, height, lineCap, lineWidth) {
-    [canvas.width, canvas.height] = [width, height];
-    [canvasContext.lineCap, canvasContext.lineWidth] = [lineCap, lineWidth];
+  function setCanvas({ width, height, lineCap, lineWidth }) {
+    canvas.width = width;
+    canvas.height = height;
+    canvasContext.lineCap = lineCap;
+    canvasContext.lineWidth = lineWidth;
   }
 
   /**
@@ -47,11 +54,12 @@
     // 設定筆畫全域變數變色，下一次會重新設定一次筆畫顏色
     if (hue === MAX_HUE_OF_HSL || hue === MIN_HUE_OF_HSL) huePath = !huePath;
     // 當顏色循環環，從另一個方向重新循環
-    !!huePath ? hue ++ : hue --;
+    !!huePath ? hue++ : hue--;
 
     // 設定筆畫寬度全域變數變化
-    if (canvasContext.lineWidth === 10 || canvasContext.lineWidth === 1) colorPath = !colorPath;
-    !!colorPath ? canvasContext.lineWidth ++ : canvasContext.lineWidth --;
+    if (canvasContext.lineWidth === 10 || canvasContext.lineWidth === 1)
+      colorPath = !colorPath;
+    !!colorPath ? canvasContext.lineWidth++ : canvasContext.lineWidth--;
     // 設定本次的最終路徑儲存
     [lastX, lastY] = [e.offsetX, e.offsetY];
   }
@@ -64,5 +72,4 @@
   function closeDraw(e) {
     isActive = !isActive;
   }
-
 })();
