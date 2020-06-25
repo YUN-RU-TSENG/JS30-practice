@@ -1,6 +1,6 @@
 (() => {
   const canvas = document.querySelector("canvas");
-  canvasContext = canvas.getContext("2d");
+  const canvasContext = canvas.getContext("2d");
 
   setCanvas({
     width: canvas.parentElement.clientWidth,
