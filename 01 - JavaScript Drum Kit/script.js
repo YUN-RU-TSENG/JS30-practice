@@ -7,13 +7,13 @@
   function playMusicAndAddClass(event) {
     const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`),
           button = document.querySelector(`div[data-key="${event.keyCode}"]`);
-    audio && playMusic(audio);
-    button && addClass(button);
+    playMusic(audio);
+    addClass(button);
   }
 
-  function playMusic(audioElement) {
-    audioElement.load(); // 重新加載
-    audioElement.play();
+  function playMusic(audio) {
+    audio.load(); // 重新加載
+    audio.play();
   }
 
   function addClass(buttonElement) {
@@ -23,8 +23,8 @@
   function removeClassAndStopMusic(event) {
     const button = document.querySelector(`div[data-key="${event.keyCode}"]`),
           audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
-    audio && stopMusic(audio);
-    button && removeClass(button);
+    stopMusic(audio);
+    removeClass(button);
   }
 
   function removeClass(buttonElement) {
